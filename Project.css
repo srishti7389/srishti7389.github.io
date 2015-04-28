@@ -1,157 +1,142 @@
-#background {
-  position:absolute;
-  top:0;
-  left:0;
-  margin:0 auto;
-  width:100%;
-  height: 660px;
-  background: radial-gradient(circle, rgba(70,63,63,1) 2%, rgba(38,34,34,1) 90%);
+* {
+  margin: 0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+}
+html, body { height: 100%; }
+
+div.page {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  background-color: white;
 }
 
-#heading h1 {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
-  font-size: 40px;
-  font-weight: lighter;
+#welcome, #work {
+  background: radial-gradient(circle, rgba(70,63,63,1) 2%, rgba(38,34,34,1) 90%);
+}
+#welcome h1, #work h1 {
   color: #F94F4F;
-  /**text-shadow: 0.1px 0.1px 2px #D13F4A;**/
-  margin-top: 22%;
+  font-size: 40px;
   text-align: center;
-}     
-
-
+  font-weight: lighter;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: 60px;
+  margin-top: -50px;
+}
+#footer {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+}
 #footer ul {
   list-style-type: none;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
-  margin-left: auto;
-  margin-right: auto;
   font-size: 25px;
-  margin-left: 33%;
-  margin-top: 15%;
-} 
-
-
+}
+#footer li {
+  width: 120px;
+  font-weight: lighter;
+  display: inline-block;
+}
 #footer li a {
   color: #F94F4F;
   text-decoration: none;
-}              
-
-#footer ul li {
-  display: inline;
-  padding: 20px;
 }
-#footer li {
-  font-weight: lighter;
-}                
+#footer li a:hover {
+  text-decoration: underline;
+}
 
 #heading1 {
   position: absolute;
-  top: 660px;
-  left:0px;
-  background: rgba(223, 76, 76, 0.9);
-  float: left;
   width: 30%;
-  height: 660px;
+  height: 100%;
+  top: 0; left: 0;
+  background: rgba(223, 76, 76, 0.9);
 }
-
 #heading1 h1 {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
   font-size: 30px;
   font-weight: lighter;
   color: #dddddd;
   text-align: center;
-  margin-top: 70%;
+  width: 100%;
+  height: 100px;
+  top: 50%; left: 0;
+  position: absolute;
+  margin-top: -50px;
   letter-spacing: 1px;
 }
-
-#aboutme {
-  position: relative;
-  left: 31%;
-  padding:0;
-  top: 660px;
-  background-color: white;
-  margin: 0;
-  width: 50%;
-  margin-left: 10%;
-  margin-right: auto;
-}
-
 #aboutme ul {
+  position: absolute;
+  top: 5%;
+  left: 40%;
+  padding:0;
+  width: 50%;
+  margin-right: auto;
   list-style-type: none;
-  margin-top: 5%;
   border-bottom: 1px solid #aaaaaa;
 }
-
 #aboutme ul li {
-  line-height: 150%;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
   font-size: 18px;
   line-height: 120%;
+  padding-bottom: 20px;
 }
-
 #process {
-  position: relative;
-  top: 700px;
-  left: 32%;
+  left: 40%;
   width: 50%;
-  margin-left: 8%;
+  bottom: 0;
+  padding-bottom: 20px;
+  position: absolute;
 }
-
 #process img {
   width: 80%;
   margin-left: 10%;
   padding-bottom: 20px;
-  border-bottom: 1px solid #aaaaaa;
 }
-
 #process h2 {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
   font-size: 20px;
   font-weight: lighter;
   color: #F94F4F;
   text-align: center;
+  padding-bottom: 20px;
 }
 
-#heading2 {
-  background :rgba(38,34,34, 0.9);
-  width: 30%;
-  height: 660px;
-  position: relative;
-  top: 835px;
-  right: 0px;
-  float: right;
+#work {
+  padding-bottom: 50px;
 }
-
-#heading2 h1 {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+#work h1 {
+  margin-top: 0;
   font-size: 33px;
-  font-weight: lighter;
-  color: #dddddd;
-  text-align: center;
-  margin-top: 70%;
+  position: static;
+  padding-top: 30px;
   letter-spacing: 3px;
 }
-
-#portfolio {
-  position: relative;
-  top:900px;
-  width: 70%;
-  height: 660px;
-  float: left;
-}
-
-#portfolio ul {
-  list-style-type: none;
-  display: inline-block;
-  height: 660px;
-}
-
-#portfolio ul li {
-  float: left;
-  padding: 5px;
+#work ul {
+  width: 60%;
   margin: auto;
+  padding: 0;
+  padding-bottom: 60%;
+  list-style-type: none;
 }
-
-#portfolio ul li img {
-  width: 350px;
-  height: 300px;
+#work ul li {
+  width: 40%;
+  margin: 5%;
+  float: left;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 40%;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+#work ul li img {
+  position: absolute;
+  margin: 1.5%;
+  width: 97%;
+  height: 97%;
 }
