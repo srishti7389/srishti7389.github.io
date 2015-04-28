@@ -1,0 +1,157 @@
+#background {
+  position:absolute;
+  top:0;
+  left:0;
+  margin:0 auto;
+  width:100%;
+  height: 660px;
+  background: radial-gradient(circle, rgba(70,63,63,1) 2%, rgba(38,34,34,1) 90%);
+}
+
+#heading h1 {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+  font-size: 40px;
+  font-weight: lighter;
+  color: #F94F4F;
+  /**text-shadow: 0.1px 0.1px 2px #D13F4A;**/
+  margin-top: 22%;
+  text-align: center;
+}     
+
+
+#footer ul {
+  list-style-type: none;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 25px;
+  margin-left: 33%;
+  margin-top: 15%;
+} 
+
+
+#footer li a {
+  color: #F94F4F;
+  text-decoration: none;
+}              
+
+#footer ul li {
+  display: inline;
+  padding: 20px;
+}
+#footer li {
+  font-weight: lighter;
+}                
+
+#heading1 {
+  position: absolute;
+  top: 660px;
+  left:0px;
+  background: rgba(223, 76, 76, 0.9);
+  float: left;
+  width: 30%;
+  height: 660px;
+}
+
+#heading1 h1 {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+  font-size: 30px;
+  font-weight: lighter;
+  color: #dddddd;
+  text-align: center;
+  margin-top: 70%;
+  letter-spacing: 1px;
+}
+
+#aboutme {
+  position: relative;
+  left: 31%;
+  padding:0;
+  top: 660px;
+  background-color: white;
+  margin: 0;
+  width: 50%;
+  margin-left: 10%;
+  margin-right: auto;
+}
+
+#aboutme ul {
+  list-style-type: none;
+  margin-top: 5%;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+#aboutme ul li {
+  line-height: 150%;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+  font-size: 18px;
+  line-height: 120%;
+}
+
+#process {
+  position: relative;
+  top: 700px;
+  left: 32%;
+  width: 50%;
+  margin-left: 8%;
+}
+
+#process img {
+  width: 80%;
+  margin-left: 10%;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #aaaaaa;
+}
+
+#process h2 {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+  font-size: 20px;
+  font-weight: lighter;
+  color: #F94F4F;
+  text-align: center;
+}
+
+#heading2 {
+  background :rgba(38,34,34, 0.9);
+  width: 30%;
+  height: 660px;
+  position: relative;
+  top: 835px;
+  right: 0px;
+  float: right;
+}
+
+#heading2 h1 {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light";
+  font-size: 33px;
+  font-weight: lighter;
+  color: #dddddd;
+  text-align: center;
+  margin-top: 70%;
+  letter-spacing: 3px;
+}
+
+#portfolio {
+  position: relative;
+  top:900px;
+  width: 70%;
+  height: 660px;
+  float: left;
+}
+
+#portfolio ul {
+  list-style-type: none;
+  display: inline-block;
+  height: 660px;
+}
+
+#portfolio ul li {
+  float: left;
+  padding: 5px;
+  margin: auto;
+}
+
+#portfolio ul li img {
+  width: 350px;
+  height: 300px;
+}
