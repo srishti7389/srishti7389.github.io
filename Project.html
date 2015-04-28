@@ -3,15 +3,16 @@
 <head>
   <title>Srishti Mittal/Graphic+Web Design</title>
   <link rel="stylesheet" type="Text/CSS" href="Project.css" />
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 </head>
 <body>
   <div class='page' id="welcome">
     <h1> srishti mittal </h1>
     <div id='footer'>
       <ul>
-        <li><a href="page1.html"> about me </a></li>
-        <li><a href="page2.html"> work </a></li>
-        <li><a href="page3.html"> contact </a></li>
+        <li><a href="#aboutme"> about me </a></li>
+        <li><a href="#work"> work </a></li>
+        <li><a href="#contact"> contact </a></li>
       </ul>
     </div>
   </div>
@@ -139,6 +140,13 @@
           }
         }
       }
+    }
+    var footer = document.getElementById("footer").children[0];
+    for (var i = 0; i < footer.children.length; i++) {
+      footer.children[i].children[0].onclick = function() {
+        jQuery('html,body').animate({scrollTop: jQuery(this.getAttribute('href')).offset().top}, 500);
+        return false;
+      };
     }
   </script>
 </body>
