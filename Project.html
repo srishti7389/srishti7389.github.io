@@ -66,5 +66,80 @@
       </li>
     </ul>
   </div>
+
+  <div id="portfolio">
+    <div name="brand_identity">
+      <div class="title">
+        <h2>Brand Identity</h2>
+        Bedlam and Boss are a custom home furnishing brand run by a couple Lorna (the Boss) and Kay (the Bedlam).
+        They wanted to incorporate mythical creatures into the design, instead of regular tables and chairs.
+        The concept was to create quirky elements that represent Lorna and Kay. They wanted to steer clear
+        of corporate and use "Steam Punk", fantasy and edgy as the feel of the design.
+      </div>
+      <div class="image"> <img src="BrandIdentity.png" /> </div>
+    </div>
+    <div name="poster_design">
+      <div class="title">
+        <h2>Poster + Logo Design</h2>
+        Dance Off is a dance company based in the Bay-area, which specializes in jazz dancing.
+        The logo was created to mirror they concept of dance battles with contestants facing off.
+        The poster was for there annual dance performance and I wanted to create a dreamy, evocative
+        feel in the design with the use of the floating dress and ballet slippers.
+        This project was part of my school assignment.
+      </div>
+      <div class="image"> <img src="Poster-design.png" /> </div>
+    </div>
+    <div name="logo_design">
+      <div class="title">
+        <h2>Logo Design</h2>
+        Topdown tours is a luxury tour company based in San Francisco. The tours provided by them are
+        custom-made and in a Mini-Cooper. I decided to incorporate the concept of using a license plate as
+        the logo because it immediately sends across the message that the tours are private/custom-made.
+        Nothing says custom like the license plate of a car!
+      </div>
+      <div class="image"> <img src="LogoDesign.png" /> </div>
+    </div>
+    <div name="web_design">
+      <div class="title">
+        <h2>Web Design for a Virtual Expo</h2>
+        Virtual Solutions Showcase is an initiative of Sustainable Silicon Valley to provide a platform
+        for partner companies to showcase their solutions to some of the most pressing problems in our area.
+        Adhered to the company colors and fonts as part of the design.<br/> Website coding in progress..
+      </div>
+      <div class="image"> <img src="Web-design-vss.png" /> </div>
+    </div>
+  </div>
+  <script>
+    var portfolio = document.getElementById("portfolio");
+    portfolio.onclick = function() {
+      this.style.display = 'none';
+      document.body.style.overflow = '';
+    };
+    for(var i = 0; i < portfolio.children.length; i++) {
+      portfolio.children[i].onclick = function(event) {
+        event = event || window.event;
+        if (event.stopPropagation) {
+          event.stopPropagation()
+        } else {
+          event.cancelBubble = true;
+        }
+      };
+    }
+    var links = document.getElementById("links_list");
+    for(var i = 0; i < links.children.length; i++) {
+      links.children[i].onclick = function() {
+        portfolio.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        for (var i = 0; i < portfolio.children.length; i++) {
+          var child = portfolio.children[i];
+          if (child.getAttribute('name') === this.getAttribute('name')) {
+            child.style.display = 'block';
+          } else {
+            child.style.display = 'none';
+          }
+        }
+      }
+    }
+  </script>
 </body>
 </html>
