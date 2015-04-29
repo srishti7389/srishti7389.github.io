@@ -3,27 +3,28 @@
 <head>
   <title>Srishti Mittal/Graphic+Web Design</title>
   <link rel="stylesheet" type="Text/CSS" href="Project.css" />
-  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 </head>
 <body>
   <div class='page' id="welcome">
     <h1> srishti mittal </h1>
+    <h2> graphic designer / web developer</h2>
     <div id='footer'>
       <ul>
-        <li><a href="#aboutme"> about me </a></li>
+        <li><a href="#aboutme"> about</a></li>
         <li><a href="#work"> work </a></li>
         <li><a href="#contact"> contact </a></li>
       </ul>
     </div>
   </div>
   <div class="page" id="aboutme">
-    <div id='heading1'>
-      <h1> about me </h1>
+    <div class='heading'>
+      <h1> about</h1>
     </div>
-    <ul>
+    <ul class="content">
       <li><p> Hello!</p>
       <li>
-        <p>I'm Srishti, a graphics and web design student from India.
+        <p>I'm Srishti, a graphic and web design student from India.
           I currently live in Palo Alto with my amazing husband Shubham.</p>
       </li>
       <li>
@@ -31,7 +32,7 @@
           and create free flowing, simple yet attractive designs.</p>
       </li>
       <li>
-        <p>When I'm not knee-deep designing, I teach Bollywood Dance Classes</p>
+        <p>When I'm not knee-deep designing, I teach Bollywood Dance Classes in the Bay Area.</p>
       </li>
       <li>
         <p>I can only hope to never stop learning from everything and everyone around me!</p>
@@ -40,7 +41,9 @@
         <p> Did I mention I'm a Thai food addict?</p>
       </li>
     </ul>
-
+    <div id='image-srishti'>
+      <img src='picture-srish.png'/>
+    </div>
     <div id='process'>
       <h2> the process..</h2>
       <img src ='design-process.png' alt="My design process"/>
@@ -68,23 +71,38 @@
     </ul>
   </div>
 
+  <div class='page' id='contact'>
+    <div class='heading'>
+      <h1> contact </h1>
+    </div>
+    <div class="content">
+      Feedback, queries, or just wanna say hi?
+      <form onsubmit="return contactMe.call(this);">
+        <input id="name" placeholder="name" />
+        <input id="email" placeholder="email address" />
+        <textarea id="message" placeholder="how can I help?"></textarea>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </div>
+
   <div id="portfolio">
     <div name="brand_identity">
       <div class="title">
         <h2>Brand Identity</h2>
-        Bedlam and Boss are a custom home furnishing brand run by a couple Lorna (the Boss) and Kay (the Bedlam).
+        Bedlam and Boss is a home furnishing brand run by a couple Lorna(the Boss) and Kay(the Bedlam).
         They wanted to incorporate mythical creatures into the design, instead of regular tables and chairs.
-        The concept was to create quirky elements that represent Lorna and Kay. They wanted to steer clear
-        of corporate and use "Steam Punk", fantasy and edgy as the feel of the design.
+        The concept was to create quirky elements that would represent Lorna and Kay. They wanted to steer clear
+        of corporate, instead the terms "Steam Punk", fantasy and edgy were used to describe the feel of the design.
       </div>
       <div class="image"> <img src="BrandIdentity.png" /> </div>
     </div>
     <div name="poster_design">
       <div class="title">
         <h2>Poster + Logo Design</h2>
-        Dance Off is a dance company based in the Bay-area, which specializes in jazz dancing.
-        The logo was created to mirror they concept of dance battles with contestants facing off.
-        The poster was for there annual dance performance and I wanted to create a dreamy, evocative
+        Dance Off is a dance company in the Bay-area, which specializes in jazz dancing.
+        The logo was created to mirror the concept of dance battles where contestants face off each other.
+        The poster was for their annual dance performance and I wanted to create a dreamy, evocative
         feel in the design with the use of the floating dress and ballet slippers.
         This project was part of my school assignment.
       </div>
@@ -94,9 +112,8 @@
       <div class="title">
         <h2>Logo Design</h2>
         Topdown tours is a luxury tour company based in San Francisco. The tours provided by them are
-        custom-made and in a Mini-Cooper. I decided to incorporate the concept of using a license plate as
-        the logo because it immediately sends across the message that the tours are private/custom-made.
-        Nothing says custom like the license plate of a car!
+        custom-made and in a Mini-Cooper. I was inspired by the California License plate for the design of the logo.
+        Nothing says custom-made like the license plate of a car!
       </div>
       <div class="image"> <img src="LogoDesign.png" /> </div>
     </div>
@@ -110,6 +127,7 @@
       <div class="image"> <img src="Web-design-vss.png" /> </div>
     </div>
   </div>
+
   <script>
     var portfolio = document.getElementById("portfolio");
     portfolio.onclick = function() {
@@ -145,8 +163,33 @@
     for (var i = 0; i < footer.children.length; i++) {
       footer.children[i].children[0].onclick = function() {
         jQuery('html,body').animate({scrollTop: jQuery(this.getAttribute('href')).offset().top}, 500);
-        return false;
+        return true;
       };
+    }
+    function contactMe() {
+      var data = {};
+      var keys = ['name', 'email', 'message'];
+      var valid = true;
+      for (var i = 0; i < keys.length; i++) {
+        var el = document.getElementById(keys[i]);
+        var val = el.value.trim();
+        if (!val || !val.length) {
+          el.setAttribute('class', 'error');
+          valid = false;
+        } else {
+          data[keys[i]] = val;
+        }
+      }
+      if (valid) {
+        jQuery.ajax({
+          url: "http://tenxlist.com/send_email",
+          dataType: 'jsonp',
+          data: data
+        });
+        this.innerHTML = "<div>Thank You! I will reach back to you shortly!</div>"
+        //this.parentNode.removeChild(this);
+      }
+      return false;
     }
   </script>
 </body>
