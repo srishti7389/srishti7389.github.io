@@ -251,7 +251,7 @@ div.heading h1 {
 #contact input[type='submit']:hover {
   box-shadow: 0 0 2px 2px #ccc;
 }
-#contact input[type='submit']:focus {
+#contact input[type='submit']:hover:active {
   box-shadow: inset 0 0 2px 4px #ccc;
 }
 .error::-webkit-input-placeholder {
