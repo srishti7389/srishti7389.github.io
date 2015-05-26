@@ -24,7 +24,7 @@
     <ul class="content">
       <li><p> Hello!</p>
       <li>
-        <p>I'm Srishti, a graphic and web design student from India.
+        <p>I'm Srishti, a graphic and web design enthusiast from India.
           I currently live in Palo Alto with my amazing husband Shubham.</p>
       </li>
       <li>
@@ -38,7 +38,7 @@
         <p>I can only hope to never stop learning from everything and everyone around me!</p>
       </li>
       <li>
-        <p> Did I mention I'm a Thai food addict?</p>
+        <p>Did I mention I'm a Thai food addict?</p>
       </li>
     </ul>
     <div id='image-srishti'>
@@ -53,20 +53,32 @@
   <div class="page" id="work">
     <h1> the work </h1>
     <ul id="links_list">
+      <li name="poster_design">
+        <img src="Poster-design-thumbnail.png" alt="Poster Design" />
+      </li>
+
+      <li name="poster_design2">
+        <img src="final-poster-thumbnail.jpg" alt="Poster Design" />
+      </li>
+
       <li name="brand_identity">
         <img src="BrandIdentity-thumbnail.png"  title='bedlam-and-boss' alt="bedlam-and-boss" />
       </li>
 
-      <li name="poster_design">
-        <img src="Poster-design-thumbnail.png" alt="Poster Design" />
+      <li name="web_design">
+        <img src="thumbnail-webdesign.png" alt="Website Design" />
+      </li>
+
+      <li name="logo_design2">
+        <img src="logodesign2-thumbnail.jpg" alt="Website Design" />
       </li>
 
       <li name="logo_design">
         <img src="LogoDesign-thumbnail.png" alt="Logo Design" />
       </li>
 
-      <li name="web_design">
-        <img src="thumbnail-webdesign.png" alt="Website Design" />
+      <li name="thank_you">
+        <img src="thankyou-thumbnail.jpg" alt="Thank You" />
       </li>
     </ul>
   </div>
@@ -78,9 +90,9 @@
     <div class="content">
       Feedback, queries, or just wanna say hi?
       <form onsubmit="return contactMe.call(this);">
-        <input id="name" placeholder="name" />
-        <input id="email" placeholder="email address" />
-        <textarea id="message" placeholder="how can I help?"></textarea>
+        <input id="name" placeholder="Name" />
+        <input id="email" placeholder="Email" />
+        <textarea id="message" placeholder="How can I help?"></textarea>
         <input type="submit" value="Submit" />
       </form>
     </div>
@@ -122,9 +134,36 @@
         <h2>Web Design for a Virtual Expo</h2>
         Virtual Solutions Showcase is an initiative of Sustainable Silicon Valley to provide a platform
         for partner companies to showcase their solutions to some of the most pressing problems in our area.
-        Adhered to the company colors and fonts as part of the design.<br/> Website coding in progress..
+        Adhered to the company colors and fonts as part of the design. Website coding in progress..
       </div>
       <div class="image"> <img src="Web-design-vss.png" /> </div>
+    </div>
+    <div name="poster_design2">
+      <div class="title">
+        <h2>Poster Design</h2>
+        Earth Day San Francisco is a one-day street fair that takes place in the city to raise awareness
+        towards the betterment of our planet. The tone of the message was aimed to be light, fun and cheerful.
+        Through the poster we are trying to get people to come celebrate the festivities.
+      </div>
+      <div class="image"> <img src="final-poster.png" /> </div>
+    </div>
+    <div name="logo_design2">
+      <div class="title">
+        <h2>Logo Design</h2>
+        Tahana Confections handcrafts luxury caramel products. Their logo needed to depict the experience one
+        would get when using their products - smooth, luscious and satisfyingly rich. The target audience is
+        middle aged women, for which we tried to make the feel of the design as organic as possible.
+      </div>
+      <div class="image"> <img src="logodesign2.png" /> </div>
+    </div>
+    <div name="thank_you">
+      <div class="title">
+        <h2>Thank you Note</h2>
+        The Thank you note was designed for all the contributors who participated in the fundraising event
+        'Silicon Valley Gives 2015' and helped the Non Profit Organization 'Sustainable Silicon Valley',
+        gather funds, which they will now be able to use in their efforts to create a Sustainable Bay Area.
+      </div>
+      <div class="image"> <img src="thankyou.png" /> </div>
     </div>
   </div>
 
@@ -163,7 +202,7 @@
     for (var i = 0; i < footer.children.length; i++) {
       footer.children[i].children[0].onclick = function() {
         jQuery('html,body').animate({scrollTop: jQuery(this.getAttribute('href')).offset().top}, 500);
-        return true;
+        return false;
       };
     }
     function contactMe() {

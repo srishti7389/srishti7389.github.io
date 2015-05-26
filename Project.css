@@ -110,7 +110,7 @@ div.heading h1 {
 #process {
   left: 40%;
   width: 50%;
-  bottom: 0;
+  bottom: 50px;
   padding-bottom: 20px;
   position: absolute;
 }
@@ -139,24 +139,27 @@ div.heading h1 {
   letter-spacing: 1px;
 }
 #work ul {
-  width: 60%;
-  margin: auto;
+  background: #eee;
+  width: 70%;
+  margin: 20px auto;
   padding: 0;
-  padding-bottom: 60%;
+  padding-bottom: 70%;
   list-style-type: none;
   padding-left: 6%;
+  padding-top: 4%;
 }
 #work ul li {
-  width: 40%;
-  margin: 2%;
+  width: 25%;
+  margin: 3%;
   float: left;
   cursor: pointer;
   position: relative;
-  padding-bottom: 40%;
- 
+  padding-bottom: 25%;
   background-color: #f8f8f8;
-  ;
+  border: 1px solid #ddd;
 }
+#work ul li:last-of-type { margin-left: 34%; }
+
 #work ul li img {
   position: absolute;
   border: solid 1px ffffff;
@@ -181,8 +184,8 @@ div.heading h1 {
 }
 #portfolio div.title {
   padding: 20px;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: 15px;
+  line-height: 20px;
   background-color: inherit;
 }
 #portfolio div.title h2 {
