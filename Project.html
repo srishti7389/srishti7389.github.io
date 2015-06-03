@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Srishti Mittal/Graphic+Web Design</title>
+  <title>Srishti Mittal/Graphic/UI/UX/Designer</title>
   <link rel="stylesheet" type="Text/CSS" href="Project.css" />
   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 </head>
 <body>
   <div class='page' id="welcome">
-    <h1> srishti mittal </h1>
-    <h2> graphic designer / web developer</h2>
+    <img src ='logo-self.png'>
+    <div class='name'>Srishti Goyal Mittal</div>
+    <div class='title'>Graphic / UI / UX Designer</div>
     <div id='footer'>
       <ul>
         <li><a href="#aboutme"> about</a></li>
@@ -45,7 +46,7 @@
       <img src='picture-srish.png'/>
     </div>
     <div id='process'>
-      <h2> the process..</h2>
+      <h2> my creative process..</h2>
       <img src ='design-process.png' alt="My design process"/>
     </div>
   </div>
@@ -54,31 +55,31 @@
     <h1> the work </h1>
     <ul id="links_list">
       <li name="poster_design">
-        <img src="Poster-design-thumbnail.png" alt="Poster Design" />
+        <img src="Poster-design-thumb.png" alt="Poster Design" />
       </li>
 
       <li name="poster_design2">
-        <img src="final-poster-thumbnail.jpg" alt="Poster Design" />
+        <img src="final-poster-thumb.jpg" alt="Poster Design" />
       </li>
 
       <li name="brand_identity">
-        <img src="BrandIdentity-thumbnail.png"  title='bedlam-and-boss' alt="bedlam-and-boss" />
+        <img src="BrandIdentity-thumb.jpg"  title='bedlam-and-boss' alt="bedlam-and-boss" />
       </li>
 
       <li name="web_design">
-        <img src="thumbnail-webdesign.png" alt="Website Design" />
+        <img src="webdesign-thumb.jpg" alt="Website Design" />
       </li>
 
       <li name="logo_design2">
-        <img src="logodesign2-thumbnail.jpg" alt="Website Design" />
+        <img src="logodesign2-thumb.jpg" alt="Website Design" />
       </li>
 
       <li name="logo_design">
-        <img src="LogoDesign-thumbnail.png" alt="Logo Design" />
+        <img src="LogoDesign-thumb.jpg" alt="Logo Design" />
       </li>
 
       <li name="thank_you">
-        <img src="thankyou-thumbnail.jpg" alt="Thank You" />
+        <img src="thankyou-thumb.jpg" alt="Thank You" />
       </li>
     </ul>
   </div>
@@ -88,7 +89,7 @@
       <h1> contact </h1>
     </div>
     <div class="content">
-      Feedback, queries, or just wanna say hi?
+      <span>Feedback, queries, or just wanna say hi?</span>
       <form onsubmit="return contactMe.call(this);">
         <input id="name" placeholder="Name" />
         <input id="email" placeholder="Email" />
@@ -223,7 +224,7 @@
         jQuery.ajax({
           type: 'POST',
           crossDomain: true,
-          url: "http://tenxlist.com/send_email",
+          url: "https://tenxlist.com/send_email",
           dataType: 'json',
           data: data
         });
