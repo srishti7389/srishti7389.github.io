@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="max-width=device-width" />
+    <title>Srishti Goyal Mittal | UI / UX Designer</title>
+    <link rel="icon" type="image/png" href="resources/favicon.jpg" />
+    <link rel="stylesheet" type="text/css" href="resources/main.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $("#header li").click(function() {
+          window.location = this.getAttribute('href');
+        });
+        var container = $("#container > div");
+        var header = $("#header > ul");
+        var hashchange = function(e) {
+          var hash = location.hash;
+          if (!hash) hash = "#welcome";
+          hash = hash.replace("#", "");
+          var index = container.find("li[tab=" + hash + "]").attr('index');
+          if (!index) return false;
+          var left = -1 * container.innerWidth() * (parseInt(index) - 1);
+          header.find('[href=#' + hash + ']').addClass('selected').siblings("li.selected").removeClass('selected');
+          if (e) {
+            container.find("ul").animate({ left: left }, 500);
+          } else {
+            container.find("ul").css({ left: left });
+          }
+          return true;
+        };
+        $(window).on('hashchange', hashchange);
+        hashchange(false);
+        var welcome = container.find("li:first-of-type");
+        var resize = function() {
+          welcome.css({ paddingTop: (container.height() - (2*welcome.find("div.text").outerHeight())) / 2});
+        };
+        $(window).resize(resize);
+        resize();
+      });
+    </script>
+  </head>
+  <body>
+    <div id="header">
+      <ul>
+        <li id="logo" href=""></li>
+        <li href="#welcome" class="selected"><span>Welcome</span></li>
+        <li href="#portfolio"><span>Portfolio</span></li>
+        <li href="#process"><span>UX Process</span></li>
+        <li href="#contact"><span>Contact</span></li>
+      </ul>
+    </div>
+    <div id="container"><div>
+      <ul>
+        <li tab="welcome" index="1">
+          <div id="display-pic">&nbsp;<div class="reflected">&nbsp;</div></div>
+          <div class="text">
+            <p>Hi there!</p>
+            <p>
+              I’m Srishti, a user experience and interface designer living in Palo Alto, California.
+            </p>
+            <p style="font-style: italic;">
+              &lt;Insert a smart, thoughtful, full-of-big-words line here, about what a fab designer I am&gt;
+            </p>
+            <p>
+              Why don’t I leave that up to you to decide! Here’s a look at some of my recent work
+            </p>
+          </div>
+          <div class="text reflected">
+            <p>Hi there!</p>
+            <p>
+              I’m Srishti, a user experience and interface designer living in Palo Alto, California.
+            </p>
+            <p>
+              &lt;Insert a smart, thoughtful, full-of-big-words line here, about what a fab designer I am&gt;
+            </p>
+            <p>
+              Why don’t I leave that up to you to decide! Here’s a look at some of my recent work
+            </p>
+          </div>
+        </li>
+        <li tab="portfolio" index="2">
+          <div class="construction">
+            Working on some new things and I will be sharing them here shortly!
+          </div>
+        </li>
+        <li tab="process" index="3">
+          <div class="construction">
+            Working on some new things and I will be sharing them here shortly!
+          </div>
+        </li>
+        <li tab="contact" index="4">
+          <div class="construction">
+            Working on some new things and I will be sharing them here shortly!
+          </div>
+        </li>
+      </ul>
+    </div></div>
+  </body>
+</html>
