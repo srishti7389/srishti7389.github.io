@@ -2,86 +2,159 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="max-width=device-width" />
     <title>Srishti Goyal Mittal | UI / UX Designer</title>
     <link rel="icon" type="image/png" href="resources/favicon.jpg" />
     <link rel="stylesheet" type="text/css" href="resources/main.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript">
       $(function() {
-        $("#header li").click(function() {
-          window.location = this.getAttribute('href');
+        $("#header li").not(".empty").click(function() {
+          var t = this.getAttribute('tab');
+          if (t === "welcome") t = "";
+          window.location = '#' + t;
+        });
+        $("div.reflection").each(function(i, el) {
+          $(el).clone().addClass('reflected').appendTo(el);
         });
         var container = $("#container > div");
-        var header = $("#header > ul");
+        var selectedTab = $("#container li[tab]:first-child");
+        var downArrow = $("div.arrow.right");
+        var winHeight = $(window).height();
+        $(window).resize(function() { winHeight = $(window).height() });
+        var adjustHeight = function(li) {
+          if (li) selectedTab = li;
+          var height = selectedTab.outerHeight();
+          selectedTab.parent().parent().height(height);
+          downArrow.css('top', Math.max(winHeight - 70, height + 20));
+        };
         var hashchange = function(e) {
           var hash = location.hash;
-          if (!hash) hash = "#welcome";
           hash = hash.replace("#", "");
-          var index = container.find("li[tab=" + hash + "]").attr('index');
-          if (!index) return false;
-          var left = -1 * container.innerWidth() * (parseInt(index) - 1);
-          header.find('[href=#' + hash + ']').addClass('selected').siblings("li.selected").removeClass('selected');
+          if (!hash) hash = "welcome";
+          var subloc, index = hash.indexOf("-");
+          if (index > 0) {
+            subloc = hash.substr(index+1);
+            hash = hash.substr(0, index);
+          }
+          var li = container.find("li[tab=" + hash + "]");
+          if (!li.attr('index')) return false;
+          $("#header li[tab='" + hash + "']").addClass('selected').siblings(".selected").removeClass("selected");
+          li.children("div:first-child").show().siblings("div").hide();
+          var left = -1 * container.innerWidth() * (parseInt(li.attr('index')) - 1);
           if (e) {
             container.find("ul").animate({ left: left }, 500);
           } else {
             container.find("ul").css({ left: left });
           }
+          if (subloc) li.children("div[name='" + subloc + "']").show().siblings("div").hide();
+          if (e) $(window).scrollTop(0);
+          adjustHeight(li);
           return true;
         };
+        $(window).scroll(adjustHeight.bind(window, null));
         $(window).on('hashchange', hashchange);
         hashchange(false);
-        var welcome = container.find("li:first-of-type");
-        var resize = function() {
-          welcome.css({ paddingTop: (container.height() - (2*welcome.find("div.text").outerHeight())) / 2});
-        };
-        $(window).resize(resize);
-        resize();
+        setTimeout(function() {
+          $("li[tab=portfolio] div[count]").each(function(i, el) {
+            var cnt = parseInt(el.getAttribute('count'));
+            for (var j = 0; j < cnt; j ++) {
+              $("<img src='resources/portfolio/" + (i+1) + "-" + (j+1) + ".png' alt='' />").
+                  appendTo(el).load(adjustHeight.bind(window, null));
+            }
+          });
+        }, 500);
       });
     </script>
   </head>
   <body>
-    <div id="header">
+    <div id="header"><div>
+      <a id="logo" href=""></a>
       <ul>
-        <li id="logo" href=""></li>
-        <li href="#welcome" class="selected"><span>Welcome</span></li>
-        <li href="#portfolio"><span>Portfolio</span></li>
-        <li href="#process"><span>UX Process</span></li>
-        <li href="#contact"><span>Contact</span></li>
+        <li tab="welcome" class="selected"><span>Welcome</span></li>
+        <li class="empty"></li>
+        <li tab="portfolio"><span>Portfolio</span></li>
+        <li class="empty"></li>
+        <li tab="process"><span>UXD Process</span></li>
+        <li class="empty"></li>
+        <li tab="contact"><span>Contact</span></li>
       </ul>
-    </div>
+    </div></div>
+    <div class="arrow left"></div>
     <div id="container"><div>
       <ul>
         <li tab="welcome" index="1">
-          <div id="display-pic">&nbsp;<div class="reflected">&nbsp;</div></div>
-          <div class="text">
-            <p>Hi there!</p>
-            <p>
-              I’m Srishti, a user experience and interface designer living in Palo Alto, California.
-            </p>
-            <p style="font-style: italic;">
-              &lt;Insert a smart, thoughtful, full-of-big-words line here, about what a fab designer I am&gt;
-            </p>
-            <p>
-              Why don’t I leave that up to you to decide! Here’s a look at some of my recent work
-            </p>
-          </div>
-          <div class="text reflected">
-            <p>Hi there!</p>
-            <p>
-              I’m Srishti, a user experience and interface designer living in Palo Alto, California.
-            </p>
-            <p>
-              &lt;Insert a smart, thoughtful, full-of-big-words line here, about what a fab designer I am&gt;
-            </p>
-            <p>
-              Why don’t I leave that up to you to decide! Here’s a look at some of my recent work
-            </p>
+          <div id="bio" class="reflection">
+            <div class="image">&nbsp;</div>
+            <div class="text">
+              Hi there! I’m Srishti,<br/>
+              a user experience and interface designer, <br/>
+              living in Palo Alto.<br/>
+              I create experiences that are&mdash;<br/>
+              &lt;Insert smart, thoughtful, full-of-big-words line here&gt;.<br/>
+              Here’s a look at some of my <a href='#portfolio'>recent work</a>
+            </div>
           </div>
         </li>
         <li tab="portfolio" index="2">
-          <div class="construction">
-            Working on some new things and I will be sharing them here shortly!
+          <div>
+            <div class="portfolio">
+              <a href="#portfolio-logo_design"><div style="background-image: url(resources/portfolio/1-2.png)"></div></a>
+              <h1> Dance Off </h1>
+              <h3> Branding &nbsp;&middot;&nbsp; UI </h3>
+              <a href="#portfolio-logo_design">View Project</a>
+            </div>
+            <div class="portfolio">
+              <a href="#portfolio-solutions"><div style="background-image: url(resources/portfolio/2-0.png)"></div></a>
+              <h1> Solutions Showcase </h1>
+              <h3> UI &nbsp;&middot;&nbsp; UX </h3>
+              <a href="#portfolio-solutions">View Project</a>
+            </div>
+            <div class="portfolio">
+              <a href="#portfolio-transbay"><div style="background-image: url(resources/portfolio/3-0.png)"></div></a>
+              <h1> Transbay Transit Center </h1>
+              <h3> Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX </h3>
+              <a href="#portfolio-transbay">View Project</a>
+            </div>
+            <div class="portfolio">
+              <a href="#portfolio-earthday"><div style="background-image: url(resources/portfolio/4-0.png)"></div></a>
+              <h1> Earth Day </h1>
+              <h3> Illustration </h3>
+              <a href="#portfolio-earthday">View Project</a>
+            </div>
+          </div>
+          <div name="logo_design">
+            <div class="full-portfolio" count="5">
+              <h1> Dance Off </h1>
+              <h3> Branding &nbsp;&middot;&nbsp; UI </h3>
+            </div>
+            <a href="#portfolio" class="back">Back to Portfolio</a>
+            <a href="#portfolio-solutions" class="next">Next &gt;</a>
+          </div>
+          <div name="solutions">
+            <div class="full-portfolio" count="5">
+              <h1> Solutions Showcase </h1>
+              <h3> UI &nbsp;&middot;&nbsp; UX </h3>
+            </div>
+            <a href="#portfolio-logo_design" class="prev">&lt; Prev</a>
+            <a href="#portfolio" class="back">Back to Portfolio</a>
+            <a href="#portfolio-transbay" class="next">Next &gt;</a>
+          </div>
+          <div name="transbay">
+            <div class="full-portfolio" count="5">
+              <h1> Transbay Transit Center </h1>
+              <h3> Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX </h3>
+            </div>
+            <a href="#portfolio-solutions" class="prev">&lt; Prev</a>
+            <a href="#portfolio" class="back">Back to Portfolio</a>
+            <a href="#portfolio-earthday" class="next">Next &gt;</a>
+          </div>
+          <div name="earthday">
+            <div class="full-portfolio" count="1">
+              <h1> Earth Day </h1>
+              <h3> Illustration </h3>
+            </div>
+            <a href="#portfolio-transbay" class="prev">&lt; Prev</a>
+            <a href="#portfolio" class="back">Back to Portfolio</a>
           </div>
         </li>
         <li tab="process" index="3">
@@ -96,5 +169,6 @@
         </li>
       </ul>
     </div></div>
+    <div class="arrow right"></div>
   </body>
 </html>
