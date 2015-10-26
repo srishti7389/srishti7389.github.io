@@ -184,31 +184,32 @@ div.arrow.right {
     font-family: "Avenir";
 }
 
-#container div.portfolio {
-    position: relative;
-    padding-left: 450px;
-    min-height: 267px;
-}
-#container div.portfolio:nth-child(even) {
-    text-align: right;
-    padding-left: 0px;
-    padding-right: 450px;
-}
-#container div.portfolio div:first-child {
+#container div.portfolio { min-height: 310px; }
+#container div.portfolio img {
     width: 400px;
-    height: 267px;
-    position: absolute;
-    background-color: white;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
 }
-#container div.portfolio:nth-child(odd) div:first-child { left: 0; }
-#container div.portfolio:nth-child(even) div:first-child { right: 0; }
+#container div.portfolio > div {
+    padding: 0;
+    width: 400px;
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+#container div.portfolio:nth-child(even) > div {
+    text-align: right;
+    padding-right: 50px;
+}
+#container div.portfolio:nth-child(odd) > div {
+    text-align: left;
+    padding-left: 50px;
+}
 #container div.portfolio:not(:first-child) {
     margin-top: 50px;
     padding-top: 50px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid #dcdcdc;
 }
 #container div.portfolio h1, #container div.full-portfolio h1 {
     margin-top: 0;
@@ -227,7 +228,7 @@ div.arrow.right {
     letter-spacing: 1px;
     font-family: "Palatino";
 }
-#container div.portfolio h1 { text-align: inherit; padding-top: 85px; }
+#container div.portfolio h1 { text-align: inherit; }
 #container div.portfolio h3 { text-align: inherit; }
 #container li[tab='portfolio'] div a {
     color: #ca7d87;
@@ -242,14 +243,22 @@ div.arrow.right {
     border-bottom: 1px solid #ca7d87;
 }
 #container div.full-portfolio img {
-    width: 90%;
+    width: 99%;
     height: auto;
     display: block;
     position: relative;
     margin: 50px auto;
-    border-bottom: 1px solid #efefef;
 }
-#container div.full-portfolio img:not(:first-of-type) { margin-top: 80px; }
+#container li[tab='process'] div.full-portfolio img {
+    margin-bottom: 100px;
+    border: 1px solid #e0e0e0;
+}
+#container div.full-portfolio span.separator {
+    height: 1px;
+    width: 100%;
+    display: block;
+    background-color: #dcdcdc;
+}
 #container li[tab='portfolio'] div[name] {
     position: relative;
     padding-bottom: 50px;

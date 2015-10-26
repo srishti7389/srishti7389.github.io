@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Srishti Goyal Mittal | UI / UX Designer</title>
-    <link rel="icon" type="image/png" href="resources/favicon.jpg" />
+    <link rel="icon" type="image/png" href="resources/favicon.png" />
     <link rel="stylesheet" type="text/css" href="resources/main.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script type="text/javascript">
@@ -21,8 +21,9 @@
         var downArrow = $("div.arrow.right");
         var winHeight = $(window).height();
         $(window).resize(function() { winHeight = $(window).height() });
-        var adjustHeight = function(li) {
+        var adjustHeight = function(e, li) {
           if (li) selectedTab = li;
+          if (e && !selectedTab.has(this)[0]) return;
           var height = selectedTab.outerHeight();
           selectedTab.parent().parent().height(height);
           downArrow.css('top', Math.max(winHeight - 70, height + 20));
@@ -48,18 +49,19 @@
           }
           if (subloc) li.children("div[name='" + subloc + "']").show().siblings("div").hide();
           if (e) $(window).scrollTop(0);
-          adjustHeight(li);
+          adjustHeight(null, li);
           return true;
         };
-        $(window).scroll(adjustHeight.bind(window, null));
         $(window).on('hashchange', hashchange);
         hashchange(false);
+        $("li[tab=process] img").load(adjustHeight);
         setTimeout(function() {
           $("li[tab=portfolio] div[count]").each(function(i, el) {
             var cnt = parseInt(el.getAttribute('count'));
             for (var j = 0; j < cnt; j ++) {
-              $("<img src='resources/portfolio/" + (i+1) + "-" + (j+1) + ".png' alt='' />").
-                  appendTo(el).load(adjustHeight.bind(window, null));
+              if (j > 0) $("<span class='separator'></span>").appendTo(el);
+              var n = "" + (i+1) + "-" + (j+1) + ".png";
+              $("<img src='resources/portfolio/" + n + "' alt='' />").appendTo(el).load(adjustHeight);
             }
           });
         }, 500);
@@ -98,28 +100,44 @@
         <li tab="portfolio" index="2">
           <div>
             <div class="portfolio">
-              <a href="#portfolio-logo_design"><div style="background-image: url(resources/portfolio/1-2.png)"></div></a>
-              <h1> Dance Off </h1>
-              <h3> Branding &nbsp;&middot;&nbsp; UI </h3>
-              <a href="#portfolio-logo_design">View Project</a>
+              <a href="#portfolio-logo_design"><img src="resources/portfolio/1-0.png" alt="Dance Off" /></a>
+              <div>
+                <h1> Dance Off </h1>
+                <h3> Branding &nbsp;&middot;&nbsp; UI </h3>
+                <a href="#portfolio-logo_design">View Project</a>
+              </div>
             </div>
             <div class="portfolio">
-              <a href="#portfolio-solutions"><div style="background-image: url(resources/portfolio/2-0.png)"></div></a>
-              <h1> Solutions Showcase </h1>
-              <h3> UI &nbsp;&middot;&nbsp; UX </h3>
-              <a href="#portfolio-solutions">View Project</a>
+              <div>
+                <h1> Solutions Showcase </h1>
+                <h3> UI &nbsp;&middot;&nbsp; UX </h3>
+                <a href="#portfolio-solutions">View Project</a>
+              </div>
+              <a href="#portfolio-solutions"><img src="resources/portfolio/2-0.png" alt="Solutions Showcase" /></a>
             </div>
             <div class="portfolio">
-              <a href="#portfolio-transbay"><div style="background-image: url(resources/portfolio/3-0.png)"></div></a>
-              <h1> Transbay Transit Center </h1>
-              <h3> Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX </h3>
-              <a href="#portfolio-transbay">View Project</a>
+              <a href="#portfolio-transbay"><img src="resources/portfolio/3-0.png" alt="Transbay Transit Center" /></a>
+              <div>
+                <h1> Transbay Transit Center </h1>
+                <h3> Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX </h3>
+                <a href="#portfolio-transbay">View Project</a>
+              </div>
             </div>
             <div class="portfolio">
-              <a href="#portfolio-earthday"><div style="background-image: url(resources/portfolio/4-0.png)"></div></a>
-              <h1> Earth Day </h1>
-              <h3> Illustration </h3>
-              <a href="#portfolio-earthday">View Project</a>
+              <div>
+                <h1> Earth Day </h1>
+                <h3> Illustration </h3>
+                <a href="#portfolio-earthday">View Project</a>
+              </div>
+              <a href="#portfolio-earthday"><img src="resources/portfolio/4-0.png" alt="Earth Day" /></a>
+            </div>
+            <div class="portfolio">
+              <a href="#portfolio-water_technology"><img src="resources/portfolio/5-0.png" alt="Water Technology Symposium" /></a>
+              <div>
+                <h1> Water Technology Symposium </h1>
+                <h3> Brochure Design </h3>
+                <a href="#portfolio-water_technology">View Project</a>
+              </div>
             </div>
           </div>
           <div name="logo_design">
@@ -155,11 +173,38 @@
             </div>
             <a href="#portfolio-transbay" class="prev">&lt; Prev</a>
             <a href="#portfolio" class="back">Back to Portfolio</a>
+            <a href="#portfolio-water_technology" class="next">Next &gt;</a>
+          </div>
+          <div name="water_technology">
+            <div class="full-portfolio" count="7">
+              <h1> Water Technology Symposium </h1>
+              <h3> Brochure Design </h3>
+            </div>
+            <a href="#portfolio-earthday" class="prev">&lt; Prev</a>
+            <a href="#portfolio" class="back">Back to Portfolio</a>
           </div>
         </li>
         <li tab="process" index="3">
-          <div class="construction">
-            Working on some new things and I will be sharing them here shortly!
+          <div class="full-portfolio">
+            <h1>User and Market Research</h1>
+            <h3>Conducting stakeholder, user interviews, competitor reviews and analysing the results.</h3>
+            <img src="resources/portfolio/a-1.png" alt="" />
+            <img src="resources/portfolio/a-2.png" alt="" />
+            <h1>Strategic Objective</h1>
+            <h3>Based on the research, evaluating the strategic objective- to determine what can be achieved in the given time with the resources at hand.</h3>
+            <img src="resources/portfolio/a-3.png" alt="" />
+            <h1>User Scenarios</h1>
+            <h3>Creating user scenarios and mental models to discover what the users goes through to achieve their desired outcome.</h3>
+            <img src="resources/portfolio/a-4.png" alt="" />
+            <h1>Wireframing Prototypes</h1>
+            <h3>These allow the team and the business to assess the flow of the site/app.</h3>
+            <img src="resources/portfolio/a-5.png" alt="" />
+            <h1>High Fidelity Mockups</h1>
+            <h3>Bringing visual design into play and applying grid structure, typography, color-scheme and icons.</h3>
+            <img src="resources/portfolio/a-6.png" alt="" />
+            <h1>Interactive Prototypes</h1>
+            <h3>Developing prototypes that can be used to observe how the user interacts with the site/app.</h3>
+            <img src="resources/portfolio/a-7.png" alt="" />
           </div>
         </li>
         <li tab="contact" index="4">
