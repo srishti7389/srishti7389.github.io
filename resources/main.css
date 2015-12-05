@@ -4,12 +4,81 @@ html, body {
     padding: 0;
     height: 100%;
     color: #4e4e4e;
+    font-size: 18px;
+    letter-spacing: 0.2px;
     vertical-align: baseline;
+    background-color: #f8f8f8;
+    font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif;
 }
 ol, ul { list-style: none; padding: 0; margin: 0; }
 blockquote, q { quotes: none; }
 blockquote:before, blockquote:after, q:before, q:after { content: none; }
 table { border-collapse: collapse; border-spacing: 0; }
+
+#v2 { background-color: #e8ecef; padding: 50px; }
+#v2 #left-bar {
+    z-index: 10;
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    margin: 50px 0 0 100px;
+}
+#v2 #left-bar li#logo {
+    margin-bottom: 20px;
+    padding-bottom: 60px;
+    background: url(logo-name.png) no-repeat left center;
+    background-size: contain;
+}
+#v2 #left-bar li { padding-top: 20px; }
+#v2 #left-bar li.indent { padding-left: 25px; }
+#v2 #left-bar li.selected:before {
+    width: 30px;
+    color: #d8989e;
+    font-size: 80%;
+    content: '\25BA';
+    margin-left: -30px;
+    display: inline-block;
+}
+#v2 #left-bar a {
+    color: inherit;
+    font-size: 90%;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#v2 #content {
+    margin: auto;
+    padding-left: 300px;
+}
+#v2 #content div.block {
+    height: 320px;
+    margin: 0 25px 50px;
+    background-color: #fff;
+    padding: 40px 40px 40px 65px;
+}
+#v2 #content div.block > img {
+    float: left;
+    width: auto;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+}
+#v2 #content div.block > div {
+    text-align: left;
+    overflow: hidden;
+    padding: 0 0 0 40px;
+}
+#v2 #content div.block:nth-of-type(even) > img { float: right; }
+#v2 #content div.block:nth-of-type(even) { padding: 40px 65px 40px 40px; }
+#v2 #content div.block:nth-of-type(even) > div { text-align: right; padding: 0 40px 0 0; }
+#v2 #content div.block h1 { font-size: 200%; font-weight: 600; }
+#v2 #content div.block h3 { font-size: 160%; font-weight: 300; }
+#v2 #content div.block a {
+    color: #d8989e;
+    font-size: 110%;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
 
 #header {
     width: 100%;
@@ -45,9 +114,9 @@ table { border-collapse: collapse; border-spacing: 0; }
     text-align: center;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-family: "Avenir";
+    font-family: "Futura";
 }
-#header ul li.empty { width: 111px; }
+#header ul li.empty { width: 110px; }
 #header ul li span {
     display: block;
     cursor: pointer;
@@ -119,7 +188,6 @@ div.arrow.right {
     box-shadow: none;
     white-space: normal;
     list-style-type: none;
-    font-family: "Avenir";
     box-sizing: border-box;
 }
 
@@ -149,7 +217,6 @@ div.arrow.right {
     padding: 78px 50px 0;
     letter-spacing: 0.7px;
     box-sizing: border-box;
-    font-family: "Palatino";
 }
 #container div.reflection div.text a {
     color: #ca7d87;
@@ -181,7 +248,6 @@ div.arrow.right {
     font-weight: 500;
     padding: 150px 0;
     text-align: center;
-    font-family: "Avenir";
 }
 
 #container div.portfolio { min-height: 310px; }
@@ -195,15 +261,14 @@ div.arrow.right {
     padding: 0;
     width: 400px;
     height: 100%;
+    text-align: center;
     display: inline-block;
     vertical-align: middle;
 }
 #container div.portfolio:nth-child(even) > div {
-    text-align: right;
     padding-right: 50px;
 }
 #container div.portfolio:nth-child(odd) > div {
-    text-align: left;
     padding-left: 50px;
 }
 #container div.portfolio:not(:first-child) {
@@ -218,7 +283,6 @@ div.arrow.right {
     font-weight: 300;
     text-align: center;
     letter-spacing: 1.5px;
-    font-family: "Palatino";
     text-transform: uppercase;
 }
 #container div.portfolio h3, #container div.full-portfolio h3 {
@@ -226,7 +290,6 @@ div.arrow.right {
     line-height: 27px;
     text-align: center;
     letter-spacing: 1px;
-    font-family: "Palatino";
 }
 #container div.portfolio h1 { text-align: inherit; }
 #container div.portfolio h3 { text-align: inherit; }
@@ -246,13 +309,11 @@ div.arrow.right {
     width: 99%;
     height: auto;
     display: block;
-    position: relative;
     margin: 50px auto;
-}
-#container li[tab='process'] div.full-portfolio img {
-    margin-bottom: 100px;
+    position: relative;
     border: 1px solid #e0e0e0;
 }
+#container li[tab='process'] div.full-portfolio img { margin-bottom: 100px; }
 #container div.full-portfolio span.separator {
     height: 1px;
     width: 100%;
