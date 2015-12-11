@@ -222,6 +222,7 @@ div.arrow.right {
     color: #ca7d87;
     text-decoration: none;
 }
+#bio { font-weight: 300; }
 #bio div.image { background-image: url(display_pic.png); }
 
 #container div.reflected {
@@ -285,6 +286,7 @@ div.arrow.right {
     letter-spacing: 1.5px;
     text-transform: uppercase;
 }
+#container div.portfolio h1 { margin: 0 -10px; }
 #container div.portfolio h3, #container div.full-portfolio h3 {
     font-weight: 300;
     line-height: 27px;
@@ -302,7 +304,7 @@ div.arrow.right {
     text-transform: lowercase;
     font-family: "Avenir";
 }
-#container div.portfolio a:hover, #container div.full-portfolio a:hover {
+#container div.portfolio > div > a:hover, #container div.full-portfolio a:hover {
     border-bottom: 1px solid #ca7d87;
 }
 #container div.full-portfolio img {
@@ -319,6 +321,12 @@ div.arrow.right {
     width: 100%;
     display: block;
     background-color: #dcdcdc;
+}
+#container div.full-portfolio p {
+    font-weight: 300;
+    line-height: 1.35;
+    text-align: justify;
+    padding: 10px 50px 30px;
 }
 #container li[tab='portfolio'] div[name] {
     position: relative;
