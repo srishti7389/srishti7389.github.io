@@ -1,63 +1,88 @@
 <!doctype html>
-<html>
+<html style='background-color: #fff;'>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Srishti Goyal Mittal | UI / UX Designer</title>
     <link rel="icon" type="image/png" href="resources/favicon.png" />
     <link rel="stylesheet" type="text/css" href="resources/main.css" />
-  </head>
-  <body id='v2'>
-    <div id='left-bar'>
-      <ul>
-        <li id='logo'><a href=''>&nbsp;</a></li>
-        <li class='selected'><a href=''>Portfolio</a></li>
-        <li class='indent'><a href='transbay.html'>Transbay Center</a></li>
-        <li class='indent'><a href='solutions.html'>Solutions Showcase</a></li>
-        <li class='indent'><a href='danceoff.html'>Dance Off</a></li>
-        <li class='indent'><a href='earthday.html'>Earth Day</a></li>
-        <li><a href='resume'>Resume</a></li>
-        <li><a href='contact'>Contact</a></li>
-      </ul>
-    </div>
-    <div id='content'>
-      <div class='block'>
-        <img src="resources/portfolio/3-0.png" alt="Transbay Transit Center" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,300" />
+    <script type="text/javascript" src="resources/main.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script id='portfolio-template' type="text/x-handlebars-template">
+      <div class='portfolio-item'><div>
+        <img src="{{image}}" alt="{{heading}}" />
         <div>
-          <h1> Transbay Center </h1>
-          <h3> Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX </h3>
-          <a href="transbay.html">View Project</a>
+          <h1> {{{heading}}} </h1>
+          <h3> {{{subtitle}}} </h3>
+          <div> {{description}} </div>
+          <a href="{{url}}">View Project</a>
         </div>
-      </div>
-      <div class='block'>
-        <img src="resources/portfolio/2-0.png" alt="Solutions Showcase" />
-        <div>
-          <h1> Solutions Showcase </h1>
-          <h3> UI &nbsp;&middot;&nbsp; UX </h3>
-          <a href="solutions.html">View Project</a>
-        </div>
-      </div>
-      <div class='block'>
-        <img src="resources/portfolio/1-0.png" alt="Dance Off" />
-        <div>
-          <h1> Dance Off </h1>
-          <h3> Branding &nbsp;&middot;&nbsp; UI </h3>
-          <a href="danceoff.html">View Project</a>
-        </div>
-      </div>
-      <div class='block'>
-        <img src="resources/portfolio/4-0.png" alt="Earth Day" />
-        <div>
-          <h1> Earth Day </h1>
-          <h3> Illustration </h3>
-          <a href="earthday.html">View Project</a>
-        </div>
-      </div>
-    </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+      </div></div>
+    </script>
     <script type="text/javascript">
       $(function() {
-        $("#content div.block img").click(function() { $(this).parent().find("a")[0].click(); });
+        var template = Handlebars.compile($("#portfolio-template").html());
+        $([{
+          image: "resources/portfolio/3-0.png",
+          heading: "Transbay Transit Center",
+          subtitle: "Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX",
+          description: "Transbay Center is a brand new neighbourhood in the heart of windy San Francisco. The new center would accomodate transport carriers, eateries, and various other stuff. Text about project here.",
+          url: "transbay.html",
+        }, {
+          image: "resources/portfolio/2-0.png",
+          heading: "Solutions Showcase",
+          subtitle: "UI &nbsp;&middot;&nbsp; UX",
+          description: "Transbay Center is a brand new neighbourhood in the heart of windy San Francisco. The new center would accomodate transport carriers, eateries, and various other stuff. Text about project here.",
+          url: "solutions.html",
+        }, {
+          image: "resources/portfolio/1-0.png",
+          heading: "Dance Off",
+          subtitle: "Branding &nbsp;&middot;&nbsp; UI",
+          description: "Transbay Center is a brand new neighbourhood in the heart of windy San Francisco. The new center would accomodate transport carriers, eateries, and various other stuff. Text about project here.",
+          url: "danceoff.html",
+        }, {
+          image: "resources/portfolio/4-0.png",
+          heading: "Earth Day",
+          subtitle: "Illustration",
+          description: "Transbay Center is a brand new neighbourhood in the heart of windy San Francisco. The new center would accomodate transport carriers, eateries, and various other stuff. Text about project here.",
+          url: "earthday.html",
+        }, {
+          image: "resources/portfolio/3-0.png",
+          heading: "Transbay Transit Center",
+          subtitle: "Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX",
+          description: "Transbay Center is a brand new neighbourhood in the heart of windy San Francisco. The new center would accomodate transport carriers, eateries, and various other stuff. Text about project here.",
+          url: "transbay.html",
+        }]).each(function(i, hash) {
+          var div = $(template(hash)).appendTo("body");
+          div.find("img").load(function() {
+            $(this).next("div").height($(this).height());
+          });
+        });
       });
     </script>
+  </head>
+  <body id='v2'>
+    <div id='main-header'>
+      <div>
+        <div id='logo' href='v2.html'></div>
+        <div id='settings'></div>
+        <ul>
+          <li href='v2.html' class='selected'>Portfolio</li>
+          <li href='about.html'>About</li>
+          <li href='resume.html'>Resume</li>
+          <li href='contact.html'>Contact</li>
+        </ul>
+      </div>
+    </div>
+    <div class='about'>
+      <div>
+        <h1>Hello</h1>
+        <p>
+          I'm Srishti, a user experience and interface designer living in
+          Palo Alto. Here's a look at some of my recent projects.
+        </p>
+        <a href='about.html'>&gt; More About Me </a>
+      </div>
+    </div>
   </body>
 </html>
