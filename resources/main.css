@@ -97,6 +97,35 @@ table { border-collapse: collapse; border-spacing: 0; }
 #v2 div.about p { color: #666; font-size: 1.5em; line-height: 1.35em; margin: 0; padding: 0; }
 #v2 div.about a { margin-top: 10px; display: inline-block; }
 
+#v2.full-portfolio #main-header + div p { color: #666; font-size: 1.2em; line-height: 1.5em; padding: 0; }
+#v2.full-portfolio #main-header + div p, #v2.full-portfolio #main-header + div h1 {
+  margin: auto;
+  width: 760px;
+  display: block;
+  text-align: center;
+}
+#v2.full-portfolio #main-header + div h1 {
+  color: #c18188;
+  font-size: 2.5em;
+  font-weight: 300;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
+div#transbay h1:before, div#transbay h1:after {
+  content: ' ';
+  margin-top: -10px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 2px; height: 2.4em;
+  background-color: #c18188;
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+div#transbay h1:before { margin-right: 10px; }
+div#transbay h1:after { margin-left: 10px; }
+
 #v2 div.portfolio-item > div:after {
   height: 0;
   clear: both;
@@ -118,6 +147,69 @@ table { border-collapse: collapse; border-spacing: 0; }
 #v2 div.portfolio-item a { position: absolute; bottom: 0; }
 #v2 div.portfolio-item:nth-child(even) img { float: right; }
 #v2 div.portfolio-item:nth-child(even) img + div { float: left; }
+
+#image-slider {
+  width: 750px;
+  height: 500px;
+  text-align: center;
+  position: relative;
+  margin: 50px auto 130px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  box-shadow: 0 0 2px 1px #ddd;
+}
+#image-slider span.arrow {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  margin-left: -375px;
+  width: 30px; height: 100%;
+  top: 0; bottom: 0; left: 50%;
+  background: url(left_arrow.png) no-repeat;
+  background-position: right 4px center;
+  background-size: auto 26px;
+}
+#image-slider span.arrow.right {
+  margin-left: 345px;
+  background-position: left 4px center;
+  background-image: url(right_arrow.png);
+}
+#image-slider > div {
+  border: 0;
+  padding: 0;
+  height: 75px;
+  cursor: pointer;
+  margin: 515px 5px 0;
+  display: inline-block;
+  background-color: #444;
+}
+#image-slider > div > img { border: 1px solid #d8d8d8; margin: 0; padding: 0; height: 75px; }
+#image-slider > div.selected > img { opacity: 0.5; }
+
+#v2 div.page-section div.section {
+  width: 500px;
+  margin: 0 10px;
+  line-height: 1.5em;
+  vertical-align: top;
+  display: inline-block;
+}
+#v2 div.page-section div.section > h3 { margin: 50px 0; }
+#v2 div.page-section div.section > h1 {
+  color: #c18188;
+  font-weight: 300;
+  margin: 0 0 40px;
+}
+#v2 div.page-section div.section > img { width: 355px; cursor: pointer; }
+#v2 div.page-section div.images { margin-top: 40px; }
+#v2 div.page-section div.images > img {
+  width: 230px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  box-sizing: border-box;
+  border: 1px solid #d8d8d8;
+}
+#v2 div.page-section div.images > img:nth-child(odd) { margin-right: 30px; }
 
 #header {
     width: 100%;
