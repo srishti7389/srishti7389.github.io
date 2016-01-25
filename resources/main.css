@@ -126,12 +126,6 @@ div#transbay h1:before, div#transbay h1:after {
 div#transbay h1:before { margin-right: 10px; }
 div#transbay h1:after { margin-left: 10px; }
 
-#v2 div.portfolio-item > div:after {
-  height: 0;
-  clear: both;
-  content: ' ';
-  display: block;
-}
 #v2 div.portfolio-item img {
   float: left;
   width: 500px;
@@ -210,6 +204,53 @@ div#transbay h1:after { margin-left: 10px; }
   border: 1px solid #d8d8d8;
 }
 #v2 div.page-section div.images > img:nth-child(odd) { margin-right: 30px; }
+
+#v2 > #resume > div { width: 1000px; display: block; margin: auto; padding-bottom: 0; line-height: 140%; }
+#v2 > #resume > div.columns { padding-top: 40px; padding-bottom; 40px; }
+#resume .section[title]:before {
+  display: block;
+  color: #c18188;
+  font-size: 1.2em;
+  font-weight: 500;
+  margin: 0 0 10px;
+  content: attr(title);
+  text-transform: uppercase;
+}
+#resume .section[title].noupper:before { text-transform: none; }
+
+#resume .section[title='profile'] { padding-right: 50px; }
+#resume ul.section, #resume ul.section > li { padding-bottom: 20px; color: #808080; font-size: 96%; }
+#resume ul.section > li > strong, #resume ul.section > li > span { display: block; }
+#resume ul.section > li > strong { color: black; font-weight: 500; }
+#resume div.columns > div.left {
+  width: 36%;
+  float: left;
+  margin-right: 3%;
+  padding-right: 3%;
+  border-right: 1px solid #f0f0f0;
+}
+#resume div.columns > div.right { overflow: hidden; }
+#resume ul.section[title='technical skills'] li {
+  float: left;
+  width: 50%;
+}
+#resume ul.section li > ul, #resume ul.section[title='personal skills'] { list-style: disc; }
+#resume ul.section li > ul li, #resume ul.section[title='personal skills'] li {
+  line-height: 140%;
+  margin-left: 15px;
+  padding-bottom: 5px;
+}
+
+#container ul:after,
+#container div.reflection:after,
+#resume div.columns:after,
+#resume ul.section[title='technical skills']:after,
+#v2 div.portfolio-item > div:after {
+  height: 0;
+  clear: both;
+  content: ' ';
+  display: block;
+}
 
 #header {
     width: 100%;
@@ -304,11 +345,6 @@ div.arrow.right {
     position: relative;
     white-space: nowrap;
 }
-#container ul:after {
-    clear: both;
-    content: ' ';
-    display: block;
-}
 #container ul li {
     float: left;
     width: 900px;
@@ -324,11 +360,6 @@ div.arrow.right {
 
 #container div.reflection { height: 240px; overflow-y: hidden; }
 #container div.reflection:not(.reflected) { padding-bottom: 60px; }
-#container div.reflection:after {
-    clear: both;
-    content: ' ';
-    display: block;
-}
 #container div.reflection div.image {
     float: left;
     width: 243px;
