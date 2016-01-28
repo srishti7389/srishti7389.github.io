@@ -126,6 +126,46 @@ div#transbay h1:before, div#transbay h1:after {
 div#transbay h1:before { margin-right: 10px; }
 div#transbay h1:after { margin-left: 10px; }
 
+table#about-me { width: 900px; margin: 100px auto 200px; }
+table#about-me thead th {
+  color: #6f6f6f;
+  font-size: 180%;
+  text-align: center;
+  font-weight: normal;
+  padding-bottom: 80px;
+}
+table#about-me tbody td:first-child {
+  background: url(about/srishti.jpg) no-repeat top center;
+  background-size: cover;
+}
+table#about-me td:last-child { width: 48%; padding-left: 4%; }
+table#about-me tbody td:last-child span {
+  display: block;
+  color: #6f6f6f;
+  margin: 10px 0 30px;
+  letter-spacing: 0.5px;
+}
+table#about-me tbody td:last-child h2 {
+  margin: 0;
+  padding: 0;
+  color: #c18188;
+  font-size: 130%;
+  font-weight: normal;
+}
+table#about-me tbody td:last-child h2:after { content: ": "; }
+table#about-me tbody td:last-child:after {
+  content: ' ';
+  height:  1px;
+  display: block;
+  background-color: #c18188;
+}
+table#about-me tbody td { margin-bottom: 10px; }
+table#about-me tbody img { width: 100%; }
+table#about-me tbody td { vertical-align: top; text-align: left; }
+table#about-me tfoot td { padding-top: 8px; vertical-align: top; text-align: right; }
+table#about-me tfoot td a, table#about-me tfoot td a:hover { text-decoration: none; }
+table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
+
 #v2 div.portfolio-item img {
   float: left;
   width: 500px;
