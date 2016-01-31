@@ -50,7 +50,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 
 #v2 {
   font-size: 0.88em;
-  letter-spacing: normal;
+  letter-spacing: 0.3px;
   background-color: #fff;
   font-family: 'Raleway', 'Questrial', sans-serif;
 }
@@ -109,12 +109,21 @@ table { border-collapse: collapse; border-spacing: 0; }
 #v2 div#main-header ul > li {
   color: white;
   cursor: pointer;
-  font-size: 150%;
+  font-size: 180%;
   padding: 25px 0;
+  font-weight: lighter;
 }
-#v2 div#main-header ul > li.selected { color: #c18188; }
+#v2 div#main-header ul > li.small {
+  padding: 5px 0;
+  font-size: 110%;
+  padding-right: 0;
+  margin-left: 25px;
+}
+#v2 div#main-header ul > li:not(.small) + li.small { margin-top: -15px; }
+#v2 div#main-header ul > li.small + li:not(.small) { margin-top: 20px; }
+#v2 div#main-header ul > li:hover, #v2 div#main-header ul > li.selected { color: #c18188; }
 
-#v2 > div:nth-child(odd) { background-color: #efefef; }
+#v2 > div:nth-child(odd) { background-color: #f8f8f8; }
 #v2 > div > div {
   margin: auto;
   width: 1200px;
@@ -126,25 +135,40 @@ table { border-collapse: collapse; border-spacing: 0; }
   padding: 150px 0;
   text-align: center;
 }
-#v2 div.about h1 { color: #c18188; font-size: 3.7em; font-weight: 300; margin: 0 0 20px; }
-#v2 div.about p { color: #666; font-size: 1.5em; line-height: 1.35em; margin: 0; padding: 0; }
+#v2 div.about h1 { color: #c18188; font-size: 3em; font-weight: 300; margin: 0 0 20px; }
+#v2 div.about p { color: #666; font-size: 1.5em; line-height: 1.35em; margin: 0; padding: 0; font-weight: lighter; }
 #v2 div.about a { margin-top: 10px; display: inline-block; }
 
-#v2.full-portfolio #main-header + div p { color: #666; font-size: 1.2em; line-height: 1.5em; padding: 0; }
-#v2.full-portfolio #main-header + div p, #v2.full-portfolio #main-header + div h1 {
+#v2 > div.full-portfolio p, #v2 > div.full-portfolio h1,
+#v2 > div.full-portfolio div.role, #v2 > div.full-portfolio p + img {
   margin: auto;
   width: 760px;
   display: block;
   text-align: center;
 }
-#v2.full-portfolio #main-header + div h1 {
+#v2 > div.full-portfolio p, #v2 > div.full-portfolio div.role {
+  padding: 0;
+  color: #666;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+#v2 > div.full-portfolio div.role { text-align: left; padding-top: 40px; }
+#v2 > div.full-portfolio div.role ul { list-style: disc; margin: 10px 0; }
+#v2 > div.full-portfolio div.role ul li { margin-left: 20px; }
+#v2 > div.full-portfolio div.role h3 {
+  margin: 10px 0;
+  color: #c18188;
+  font-size: 1.2em;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+#v2 > div.full-portfolio h1 {
   color: #c18188;
   font-size: 2.5em;
   font-weight: 300;
-  margin-bottom: 30px;
-  text-transform: uppercase;
+  margin-bottom: 50px;
 }
-div#transbay h1:before, div#transbay h1:after {
+/* div#transbay h1:before, div#transbay h1:after {
   content: ' ';
   margin-top: -10px;
   display: inline-block;
@@ -157,7 +181,48 @@ div#transbay h1:before, div#transbay h1:after {
   transform: rotate(45deg);
 }
 div#transbay h1:before { margin-right: 10px; }
-div#transbay h1:after { margin-left: 10px; }
+div#transbay h1:after { margin-left: 10px; } */
+#v2 #overlay {
+  z-indeX: 100;
+  display: none;
+  position: fixed;
+  overflow: scroll;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-color: rgba(0,0,0,0.9)
+}
+#v2 #overlay span {
+  width: 50px;
+  height: 80px;
+  position: fixed;
+  margin-top: -25px;
+  top: 50%; left: 0; right: auto;
+  background: url(left_arrow.png) no-repeat;
+  background-position: right center;
+  background-size: 24px auto;
+}
+#v2 #overlay span.right {
+  left: auto; right: 0;
+  background-image: url(right_arrow.png);
+  background-position: left center;
+}
+#v2 #overlay a {
+  color: #fff;
+  display: block;
+  position: fixed;
+  top: 0; right: 0;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  background-color: #c18188;
+}
+#v2 #overlay a:hover { text-decoration: none; }
+#v2 #overlay a:before { display: block; content: 'Click to Close'; }
+#v2 #overlay img {
+  display: block;
+  max-width: 70%;
+  margin: 10px auto;
+}
 
 table#about-me { width: 900px; margin: 100px auto 200px; }
 table#about-me thead th {
@@ -199,84 +264,132 @@ table#about-me tfoot td { padding-top: 8px; vertical-align: top; text-align: rig
 table#about-me tfoot td a, table#about-me tfoot td a:hover { text-decoration: none; }
 table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
 
-#v2 div.portfolio-item img {
+#v2 div.portfolio-item a.img > img { width: 100%; }
+#v2 div.portfolio-item a.img {
   float: left;
   width: 500px;
   display: block;
 }
-#v2 div.portfolio-item img + div {
+#v2 div.portfolio-item a.img + div {
   width: 500px;
   float: right;
   position: relative;
 }
-#v2 div.portfolio-item h1 { margin: 0; }
-#v2 div.portfolio-item h3 { margin: 50px 0; }
-#v2 div.portfolio-item a { position: absolute; bottom: 0; }
-#v2 div.portfolio-item:nth-child(even) img { float: right; }
-#v2 div.portfolio-item:nth-child(even) img + div { float: left; }
+#v2 div.portfolio-item h1 {
+  margin: 0;
+  color: #c18188;
+  font-size: 200%;
+  cursor: pointer;
+  font-weight: 300;
+}
+#v2 div.portfolio-item h3 {
+  margin: 50px 0;
+  font-size: 150%;
+  font-weight: 300;
+}
+#v2 div.portfolio-item a:not(.img) { position: absolute; bottom: 0; }
+#v2 div.portfolio-item:nth-child(even) a.img { float: right; }
+#v2 div.portfolio-item:nth-child(even) a.img + div { float: left; }
 
 #image-slider {
-  width: 750px;
-  height: 500px;
+  width: 800px;
+  height: 400px;
   text-align: center;
   position: relative;
-  margin: 50px auto 130px;
+  margin: 50px auto 110px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  box-shadow: 0 0 2px 1px #ddd;
 }
 #image-slider span.arrow {
   display: block;
   cursor: pointer;
   position: absolute;
-  margin-left: -375px;
+  margin-left: -400px;
   width: 30px; height: 100%;
   top: 0; bottom: 0; left: 50%;
-  background: url(left_arrow.png) no-repeat;
-  background-position: right 4px center;
-  background-size: auto 26px;
 }
-#image-slider span.arrow.right {
-  margin-left: 345px;
-  background-position: left 4px center;
+#image-slider span.arrow:before {
+  height: 50px;
+  content: ' ';
+  margin-top: -25px;
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  background: rgba(227,227,227,0.5) url(left_arrow.png) no-repeat;
+  background-position: left 6px center;
+  background-size: 14px auto;
+}
+#image-slider span.arrow.right { margin-left: 370px; }
+#image-slider span.arrow.right:before {
   background-image: url(right_arrow.png);
+  background-position: right 6px center;
 }
 #image-slider > div {
   border: 0;
   padding: 0;
-  height: 75px;
+  height: 80px;
   cursor: pointer;
-  margin: 515px 5px 0;
+  min-width: 105px;
+  position: relative;
+  margin: 415px 5px 0;
   display: inline-block;
-  background-color: #444;
+  background-color: #fff;
+  box-sizing: border-box;
 }
-#image-slider > div > img { border: 1px solid #d8d8d8; margin: 0; padding: 0; height: 75px; }
-#image-slider > div.selected > img { opacity: 0.5; }
-
-#v2 div.page-section div.section {
-  width: 500px;
-  margin: 0 10px;
-  line-height: 1.5em;
-  vertical-align: top;
-  display: inline-block;
-}
-#v2 div.page-section div.section > h3 { margin: 50px 0; }
-#v2 div.page-section div.section > h1 {
-  color: #c18188;
-  font-weight: 300;
-  margin: 0 0 40px;
-}
-#v2 div.page-section div.section > img { width: 355px; cursor: pointer; }
-#v2 div.page-section div.images { margin-top: 40px; }
-#v2 div.page-section div.images > img {
-  width: 230px;
-  cursor: pointer;
-  margin-bottom: 30px;
+#image-slider > div:first-of-type { margin-left: 0; }
+#image-slider > div:last-of-type { margin-right: 0; }
+#image-slider > div > img {
+  padding: 0;
+  height: 100%;
+  margin: 0 auto;
   box-sizing: border-box;
   border: 1px solid #d8d8d8;
 }
-#v2 div.page-section div.images > img:nth-child(odd) { margin-right: 30px; }
+#image-slider > div.selected:after {
+  content: ' ';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  background-color: rgba(0,0,0,0.5);
+}
+
+#v2 img[expand] { cursor: pointer; }
+
+#v2 div.page-section div.section:not(:last-child) { margin-bottom: 50px; }
+#v2.others div.page-section div.section:not(:last-child) { margin-bottom: 0; }
+#v2 div.page-section div.section > div {
+  width: 45%;
+  font-size: 90%;
+  font-weight: 300;
+  line-height: 1.5em;
+  display: inline-block;
+  vertical-align: middle;
+}
+#v2 div.page-section div.section.align-top > div { vertical-align: top; }
+#v2 div.page-section div.section > div:first-child { margin-right: 9%; }
+#v2 div.page-section div.section > div.full-width { width: 100%; margin-right: 0; text-align: center; }
+#v2 div.page-section div.section > div > img { max-width: 100%; }
+#v2 div.page-section div.section > div.small-img { text-align: center; }
+#v2 div.page-section div.section > div.small-img > img { max-width: 60%; }
+#v2 div.page-section div.section > div > ul { list-style: disc; margin: 10px 0; }
+#v2 div.page-section div.section > div > ul > li { margin-left: 20px; }
+#v2 div.page-section div.section.bottom-line > div:after {
+  height: 1px;
+  content: ' ';
+  display: block;
+  margin: -6px -10px 0;
+  background-color: #ccc;
+}
+#v2 div.page-section div.section > div > h3, #v2 div.page-section div.section > div > h4 {
+  font-size: 1.2em;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  margin: 10px 0 30px;
+  text-transform: uppercase;
+}
+#v2 div.page-section div.section > div > h3 { color: #c18188; font-size: 1.5em; }
+#v2 div.page-section div.section.border img { border: 1px solid #eee; }
+#v2 div.page-section div.section > div.same-height img { margin-top: 20px; }
 
 #v2 > #resume > div { width: 1000px; display: block; margin: auto; padding-bottom: 0; line-height: 140%; }
 #v2 > #resume > div.columns { padding-top: 40px; padding-bottom; 40px; }
@@ -315,6 +428,7 @@ table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
 }
 
 #container ul:after,
+#image-slider:after,
 #container div.reflection:after,
 #resume div.columns:after,
 #resume ul.section[title='technical skills']:after,

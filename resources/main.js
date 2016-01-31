@@ -40,6 +40,41 @@ var Main = Main || {
     });
   },
 
+  initImageExpander: function() {
+    var images = $("img[expand]"), currentIndex;
+    if (!images[0]) return;
+    var div = $("<div id='overlay'><img /><a href='#'></a><span class='left'></span><span class='right'></span></div>");
+    var setImage = function(index) {
+      while (index < 0) index += images.length;
+      index = index % images.length;
+      var el = images[index];
+      var src = el.getAttribute('expand');
+      if (!src || !src.length) src = el.getAttribute('src');
+      div.find("img").attr('src', src).attr('style', el.getAttribute('style'));
+      currentIndex = index;
+    };
+
+    div.appendTo("body").click(function() {
+      document.body.style.overflow = '';
+      div.fadeOut(150);
+    });
+    div.find("a").click(function() { div.click(); return false; });
+    div.find("img").click(function(e) { e.stopPropagation(); });
+    div.find("span.left, span.right").click(function() {
+      setImage(currentIndex + ($(this).hasClass('left') ? -1 : 1));
+      return false;
+    });
+
+    images.each(function(index, el) {
+      $(el).click(function() {
+        document.body.style.overflow = 'hidden';
+        div.fadeIn(150);
+        setImage(index);
+        return false;
+      });
+    });
+  },
+
   initHeader: function() {
     var header = $("<div id='main-header'><div><div id='logo' href='v2.html'></div></div></div>").prependTo("body");
     $(window).scroll(function() {
@@ -52,6 +87,10 @@ var Main = Main || {
 
     var menuBar = $("<ul></ul>").appendTo(header.children().first());
     menuBar.append("<li href='v2.html'>Portfolio</li>");
+    menuBar.append("<li class='small' href='transbay.html'>Transbay Transit</li>");
+    menuBar.append("<li class='small' href='solutions.html'>Solutions Showcase</li>");
+    menuBar.append("<li class='small' href='danceoff.html'>Dance Off</li>");
+    menuBar.append("<li class='small' href='others.html'>Other Projects</li>");
     menuBar.append("<li href='about.html'>About</li>");
     menuBar.append("<li href='resume.html'>Resume</li>");
     menuBar.append("<li href='contact.html'>Contact</li>");
@@ -64,6 +103,12 @@ var Main = Main || {
 
 $(function() {
   Main.initHeader();
+  Main.initImageExpander();
+  $("#v2 div.page-section div.section > div.same-height").each(function(i, el) {
+    var diff = $(el).siblings("div").height() - $(el).height();
+    $("img", el).css('margin-top', diff*0.6);
+    $(el).css('margin-top', diff*0.4);
+  });
   $("#image-slider").each(Main.setupImageSlider);
   $("div[href], li[href]").click(function() { window.location = this.getAttribute('href'); });
 });

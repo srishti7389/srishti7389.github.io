@@ -2,16 +2,16 @@
 <html style='background-color: #fff;'>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Srishti Goyal Mittal | UI / UX Designer</title>
+    <title>Srishti Goyal Mittal | UI/ UX Designer</title>
     <link rel="icon" type="image/png" href="resources/favicon.png" />
     <link rel="stylesheet" type="text/css" href="resources/main.css" />
     <script type="text/javascript" src="resources/main.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script id='portfolio-template' type="text/x-handlebars-template">
       <div class='portfolio-item'><div>
-        <img src="{{image}}" alt="{{heading}}" />
+        <a href="{{url}}" class='img'><img src="{{image}}" alt="{{heading}}" /></a>
         <div>
-          <h1> {{{heading}}} </h1>
+          <h1 href="{{url}}"> {{{heading}}} </h1>
           <h3> {{{subtitle}}} </h3>
           <div> {{description}} </div>
           <a href="{{url}}">View Project</a>
@@ -22,40 +22,35 @@
       $(function() {
         var template = Handlebars.compile($("#portfolio-template").html());
         $([{
-          image: "resources/portfolio/3-0.png",
+          image: "resources/transbay/main.png",
           heading: "Transbay Transit Center",
           subtitle: "Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX",
-          description: "Transbay Center is a brand new neighbourhood in the heart of windy San Francisco. The new center would accomodate transport carriers, eateries, and various other stuff. Text about project here.",
+          description: "The Transbay Center is a transit station and a neighborhood development project in downtown San Francisco that will serve the Bay Area's regional transportation system.",
           url: "transbay.html",
         }, {
-          image: "resources/portfolio/2-0.png",
+          image: "resources/solutions/main.png",
           heading: "Solutions Showcase",
           subtitle: "UI &nbsp;&middot;&nbsp; UX",
-          description: "Transbay Center is a brand new neighbourhood in the heart of windy San Francisco. The new center would accomodate transport carriers, eateries, and various other stuff. Text about project here.",
+          description: "The Solutions Showcase is a platform for companies to share sustainable ideas with other companies to reduce our carbon footprint and the use of non-renewable resources.",
           url: "solutions.html",
         }, {
-          image: "resources/portfolio/1-0.png",
+          image: "resources/danceoff/website/0.png",
           heading: "Dance Off",
           subtitle: "Branding &nbsp;&middot;&nbsp; UI",
-          description: "Transbay Center is a brand new neighbourhood in the heart of windy San Francisco. The new center would accomodate transport carriers, eateries, and various other stuff. Text about project here.",
+          description: "Dance Off is a boutique dance studio based in Palo Alto, California that promises to teach dancers and non-dancers the power and therapy of dance movement.",
           url: "danceoff.html",
         }, {
-          image: "resources/portfolio/4-0.png",
-          heading: "Earth Day",
-          subtitle: "Illustration",
-          description: "Transbay Center is a brand new neighbourhood in the heart of windy San Francisco. The new center would accomodate transport carriers, eateries, and various other stuff. Text about project here.",
-          url: "earthday.html",
-        }, {
-          image: "resources/portfolio/3-0.png",
-          heading: "Transbay Transit Center",
-          subtitle: "Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX",
-          description: "Transbay Center is a brand new neighbourhood in the heart of windy San Francisco. The new center would accomodate transport carriers, eateries, and various other stuff. Text about project here.",
-          url: "transbay.html",
+          image: "resources/others/main.png",
+          heading: "Other Projects",
+          subtitle: "Infographics &nbsp;&middot;&nbsp; Print",
+          description: "Ensemble of standalone projects that I have worked on recently involving illustrations.",
+          url: "others.html",
         }]).each(function(i, hash) {
           var div = $(template(hash)).appendTo("body");
-          div.find("img").load(function() {
-            $(this).next("div").height($(this).height());
+          div.find("a.img > img").load(function() {
+            $(this).parent().next("div").height($(this).height());
           });
+          div.find("h1[href]").click(function() { window.location = this.getAttribute('href'); });
         });
       });
     </script>
@@ -68,7 +63,7 @@
           I'm Srishti, a user experience and interface designer living in
           Palo Alto. Here's a look at some of my recent projects.
         </p>
-        <a href='about.html'>&gt; More About Me </a>
+        <a href='about.html'> More about me </a>
       </div>
     </div>
   </body>
