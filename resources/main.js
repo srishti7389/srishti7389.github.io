@@ -104,11 +104,49 @@ var Main = Main || {
 $(function() {
   Main.initHeader();
   Main.initImageExpander();
-  $("#v2 div.page-section div.section > div.same-height").each(function(i, el) {
-    var diff = $(el).siblings("div").height() - $(el).height();
-    $("img", el).css('margin-top', diff*0.6);
-    $(el).css('margin-top', diff*0.4);
-  });
   $("#image-slider").each(Main.setupImageSlider);
   $("div[href], li[href]").click(function() { window.location = this.getAttribute('href'); });
+  /*$("#v2 div.page-section div.section.same-height").each(function(i, el) {
+    var loaded = 0, el = $(el);
+    var images = el.find("img");
+    var matchHeights = function() {
+      var divs = el.children("div");
+      var match = function(d1, d2) {
+        var diff = $(d2).height() - $(d1).height();
+        $("img", d1).css('margin-top', diff*0.6);
+        $(d1).css('margin-top', diff*0.4);
+      };
+      if (divs.first().height() < divs.last().height()) {
+        match(divs[0], divs[1]);
+      } else {
+        match(divs[1], divs[0]);
+      }
+    };
+    images.each(function(i, img) {
+      loaded += 1; if (loaded === images.length) matchHeights();
+    });
+  });*/
+  $("#contact input[type='submit']").click(function() {
+    var form = $("#contact"), data = { to: "srishti7389@hotmail.com" }, invalid;
+    $(['email', 'message']).each(function(i, e) {
+      var el = form.find("[name='" + e + "']");
+      var val = $.trim(el.val());
+      if (!val || !val.length) {
+        if (!invalid) invalid = el;
+      } else {
+        data[e] = val;
+      }
+    });
+    if (invalid) { invalid.focus(); return false; }
+    jQuery.ajax({
+      type: 'POST',
+      crossDomain: true,
+      url: "https://tenxlist.com/send_email",
+      dataType: 'json',
+      data: data
+    });
+    form.find("thead th").text("Thanks, I will get back to you shortly!").
+        css('text-align', 'center').siblings("tbody").remove();
+    return false;
+  });
 });

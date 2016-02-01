@@ -264,6 +264,54 @@ table#about-me tfoot td { padding-top: 8px; vertical-align: top; text-align: rig
 table#about-me tfoot td a, table#about-me tfoot td a:hover { text-decoration: none; }
 table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
 
+#v2.contact { height: auto; }
+#contact { width: 600px; margin: 100px auto 0; }
+#contact thead th {
+  color: #c18188;
+  font-size: 180%;
+  text-align: left;
+  font-weight: normal;
+  padding-bottom: 40px;
+}
+#contact tbody td {
+  line-height: 2em;
+  white-space: nowrap;
+  vertical-align: top;
+  padding-bottom: 20px;
+}
+#contact tbody td:last-child { width: 99%; }
+#contact tbody td:first-child { padding-right: 10px; }
+#contact tbody td input, #contact tbody td textarea {
+  width: 100%;
+  height: 100%;
+  display: block;
+  font-size: 100%;
+  line-height: 1.5em;
+  padding: 0.25em 5px;
+  border: 1px solid #c18188;
+  box-sizing: border-box;
+}
+#contact tbody td input:focus, #contact tbody td textarea:focus {
+  outline: none;
+  border-width: 2px;
+}
+#contact tbody td textarea { resize: none; height: 200px; }
+#contact tbody td input[type='submit'] {
+  color: #fff;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  padding: 5px 20px;
+  display: inline-block;
+  border-color: #c3838a;
+  background-color: #c18188;
+  box-shadow: 1px 1px 1px 1px #e0e0e0;
+}
+#contact tbody td input[type='submit']:hover {
+  border-color: #c18188;
+  box-shadow: none;
+}
+
 #v2 div.portfolio-item a.img > img { width: 100%; }
 #v2 div.portfolio-item a.img {
   float: left;
@@ -389,7 +437,7 @@ table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
 }
 #v2 div.page-section div.section > div > h3 { color: #c18188; font-size: 1.5em; }
 #v2 div.page-section div.section.border img { border: 1px solid #eee; }
-#v2 div.page-section div.section > div.same-height img { margin-top: 20px; }
+#v2 div.page-section div.section.same-height > div h3 ~ img { margin-top: 50px; }
 
 #v2 > #resume > div { width: 1000px; display: block; margin: auto; padding-bottom: 0; line-height: 140%; }
 #v2 > #resume > div.columns { padding-top: 40px; padding-bottom; 40px; }
