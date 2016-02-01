@@ -1,314 +1,70 @@
 <!doctype html>
-<html>
+<html style='background-color: #fff;'>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Srishti Goyal Mittal | UI/ UX Designer</title>
     <link rel="icon" type="image/png" href="resources/favicon.png" />
     <link rel="stylesheet" type="text/css" href="resources/main.css" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="resources/main.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script id='portfolio-template' type="text/x-handlebars-template">
+      <div class='portfolio-item'><div>
+        <a href="{{url}}" class='img'><img src="{{image}}" alt="{{heading}}" /></a>
+        <div>
+          <h1 href="{{url}}"> {{{heading}}} </h1>
+          <h3> {{{subtitle}}} </h3>
+          <div> {{description}} </div>
+          <a href="{{url}}">View Project</a>
+        </div>
+      </div></div>
+    </script>
     <script type="text/javascript">
       $(function() {
-        $("#header li").not(".empty").click(function() {
-          var t = this.getAttribute('tab');
-          if (t === "welcome") t = "";
-          window.location = '#' + t;
-        });
-        $("div.reflection").each(function(i, el) {
-          $(el).clone().addClass('reflected').appendTo(el);
-        });
-        var container = $("#container > div");
-        var selectedTab = $("#container li[tab]:first-child");
-        var downArrow = $("div.arrow.right");
-        var winHeight = $(window).height();
-        $(window).resize(function() { winHeight = $(window).height() });
-        var adjustHeight = function(e, li) {
-          if (li) selectedTab = li;
-          if (e && !selectedTab.has(this)[0]) return;
-          var height = selectedTab.outerHeight();
-          selectedTab.parent().parent().height(height);
-          downArrow.css('top', Math.max(winHeight - 70, height + 20));
-        };
-        var hashchange = function(e) {
-          var hash = location.hash;
-          hash = hash.replace("#", "");
-          if (!hash) hash = "welcome";
-          var subloc, index = hash.indexOf("-");
-          if (index > 0) {
-            subloc = hash.substr(index+1);
-            hash = hash.substr(0, index);
-          }
-          var li = container.find("li[tab=" + hash + "]");
-          if (!li.attr('index')) return false;
-          $("#header li[tab='" + hash + "']").addClass('selected').siblings(".selected").removeClass("selected");
-          li.children("div:first-child").show().siblings("div").hide();
-          var left = -1 * container.innerWidth() * (parseInt(li.attr('index')) - 1);
-          if (e) {
-            container.find("ul").animate({ left: left }, 500);
-          } else {
-            container.find("ul").css({ left: left });
-          }
-          if (subloc) li.children("div[name='" + subloc + "']").show().siblings("div").hide();
-          if (e) $(window).scrollTop(0);
-          adjustHeight(null, li);
-          return true;
-        };
-        $(window).on('hashchange', hashchange);
-        hashchange(false);
-        $("li[tab=process] img").load(adjustHeight);
-        setTimeout(function() {
-          $("li[tab=portfolio] div[count]").each(function(i, el) {
-            var cnt = parseInt(el.getAttribute('count'));
-            for (var j = 0; j < cnt; j ++) {
-              if (j > 0) $("<span class='separator'></span>").appendTo(el);
-              var n = "" + (i+1) + "-" + (j+1) + ".png";
-              $("<img src='resources/portfolio/" + n + "' alt='' />").appendTo(el).load(adjustHeight);
-            }
+        var template = Handlebars.compile($("#portfolio-template").html());
+        $([{
+          image: "resources/transbay/main.png",
+          heading: "Transbay Transit Center",
+          subtitle: "Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX",
+          description: "The Transbay Center is a transit station and a neighborhood development project in downtown San Francisco that will serve the Bay Area's regional transportation system.",
+          url: "transbay.html",
+        }, {
+          image: "resources/solutions/main.png",
+          heading: "Solutions Showcase",
+          subtitle: "UI &nbsp;&middot;&nbsp; UX",
+          description: "The Solutions Showcase is a platform for companies to share sustainable ideas with other companies to reduce our carbon footprint and the use of non-renewable resources.",
+          url: "solutions.html",
+        }, {
+          image: "resources/danceoff/website/0.png",
+          heading: "Dance Off",
+          subtitle: "Branding &nbsp;&middot;&nbsp; UI",
+          description: "Dance Off is a boutique dance studio based in Palo Alto, California that promises to teach dancers and non-dancers the power and therapy of dance movement.",
+          url: "danceoff.html",
+        }, {
+          image: "resources/others/main.png",
+          heading: "Other Projects",
+          subtitle: "Infographics &nbsp;&middot;&nbsp; Print",
+          description: "Ensemble of standalone projects that I have worked on recently involving illustrations.",
+          url: "others.html",
+        }]).each(function(i, hash) {
+          var div = $(template(hash)).appendTo("body");
+          div.find("a.img > img").load(function() {
+            $(this).parent().next("div").height($(this).height());
           });
-        }, 500);
+          div.find("h1[href]").click(function() { window.location = this.getAttribute('href'); });
+        });
       });
     </script>
   </head>
-  <body>
-    <div id="header"><div>
-      <a id="logo" href=""></a>
-      <ul>
-        <li tab="welcome" class="selected"><span>Welcome</span></li>
-        <li class="empty"></li>
-        <li tab="portfolio"><span>Portfolio</span></li>
-        <li class="empty"></li>
-        <li tab="process"><span>UXD Process</span></li>
-        <li class="empty"></li>
-        <li tab="contact"><span>Contact</span></li>
-      </ul>
-    </div></div>
-    <div class="arrow left"></div>
-    <div id="container"><div>
-      <ul>
-        <li tab="welcome" index="1">
-          <div id="bio" class="reflection">
-            <div class="image">&nbsp;</div>
-            <div class="text">
-              Hi there! I’m Srishti,<br/>
-              a user experience and interface designer, <br/>
-              living in Palo Alto.<br/>
-              I create experiences that are&mdash;<br/>
-              &lt;Insert smart, thoughtful, full-of-big-words line here&gt;.<br/>
-              Here’s a look at some of my <a href='#portfolio'>recent work</a>
-            </div>
-          </div>
-        </li>
-        <li tab="portfolio" index="2">
-          <div>
-            <div class="portfolio">
-              <a href="#portfolio-logo_design"><img src="resources/portfolio/1-0.png" alt="Dance Off" /></a>
-              <div>
-                <h1> Dance Off </h1>
-                <h3> Branding &nbsp;&middot;&nbsp; UI </h3>
-                <a href="#portfolio-logo_design">View Project</a>
-              </div>
-            </div>
-            <div class="portfolio">
-              <div>
-                <h1> Transbay Transit Center </h1>
-                <h3> Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX </h3>
-                <a href="#portfolio-transbay">View Project</a>
-              </div>
-              <a href="#portfolio-transbay"><img src="resources/portfolio/2-0.png" alt="Transbay Transit Center" /></a>
-            </div>
-            <div class="portfolio">
-              <a href="#portfolio-solutions_showcase"><img src="resources/portfolio/3-0.png" alt="Solutions Showcase" /></a>
-              <div>
-                <h1> Solutions Showcase </h1>
-                <h3> UI &nbsp;&middot;&nbsp; UX </h3>
-                <a href="#portfolio-solutions_showcase">View Project</a>
-              </div>
-            </div>
-            <div class="portfolio">
-              <div>
-                <h1> Earth Day </h1>
-                <h3> Branding &nbsp;&middot;&nbsp; Illustration </h3>
-                <a href="#portfolio-earthday">View Project</a>
-              </div>
-              <a href="#portfolio-earthday"><img src="resources/portfolio/4-0.png" alt="Earth Day" /></a>
-            </div>
-            <div class="portfolio">
-              <a href="#portfolio-topdown"><img src="resources/portfolio/5-0.png" alt="Topdown Tours" /></a>
-              <div>
-                <h1> Topdown Tours </h1>
-                <h3> Branding &nbsp;&middot;&nbsp; Graphic Design </h3>
-                <a href="#portfolio-topdown">View Project</a>
-              </div>
-            </div>
-            <div class="portfolio">
-              <div>
-                <h1> Net Positive East Palo Alto </h1>
-                <h3> Infographics </h3>
-                <a href="#portfolio-net_positive">View Project</a>
-              </div>
-              <a href="#portfolio-net_positive"><img src="resources/portfolio/6-0.png" alt="Net Positive East Palo Alto" /></a>
-            </div>
-            <div class="portfolio">
-              <a href="#portfolio-water_technology"><img src="resources/portfolio/7-0.png" alt="Water Technology Symposium" /></a>
-              <div>
-                <h1> Water Technology Symposium </h1>
-                <h3> Publication Design </h3>
-                <a href="#portfolio-water_technology">View Project</a>
-              </div>
-            </div>
-          </div>
-          <div name="logo_design">
-            <div class="full-portfolio" count="8">
-              <h1> Dance Off </h1>
-              <h3> Branding &nbsp;&middot;&nbsp; UI </h3>
-              <p>
-                Dance Off is a boutique dance studio based in Palo Alto, California.
-                It is a fairly new dance studio that promises to teach dancers and
-                non-dancers the power and therapy of dance movement. The company
-                wanted to create a strong brand that resonates with their values and
-                makes them distinguishable.The key words from the initial meetings
-                were— strong, approachable, passionate and depicting movement.
-              </p>
-            </div>
-            <a href="#portfolio" class="back">Back to Portfolio</a>
-            <a href="#portfolio-transbay" class="next">Next &gt;</a>
-          </div>
-          <div name="transbay">
-            <div class="full-portfolio" count="7">
-              <h1> Transbay Transit Center </h1>
-              <h3> Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX </h3>
-              <p>
-                The transit center is not only a hub for transportation,
-                but a brand new neighborhood in downtown San Francisco.
-                The project was to create the branding and design a web
-                experience that caters to commuters, residents and tourists.
-              </p>
-            </div>
-            <a href="#portfolio-logo_design" class="prev">&lt; Prev</a>
-            <a href="#portfolio" class="back">Back to Portfolio</a>
-            <a href="#portfolio-solutions_showcase" class="next">Next &gt;</a>
-          </div>
-          <div name="solutions_showcase">
-            <div class="full-portfolio" count="5">
-              <h1> Solutions Showcase </h1>
-              <h3> UI &nbsp;&middot;&nbsp; UX </h3>
-              <p>
-                The Solutions Showcase is a platform for companies to share sustainable
-                ideas with other companies to reduce our carbon footprint and increase
-                awareness about reducing the use of non-renewable resources. The task
-                was to design an experience that is easy to use and adapt. Since we had
-                a lot of information to present, we needed to create a well-balanced
-                architecture providing users with just what they need, when they need
-                it. The interface needed to be simple, fast, adaptive and intuitive.
-              </p>
-            </div>
-            <a href="#portfolio-transbay" class="prev">&lt; Prev</a>
-            <a href="#portfolio" class="back">Back to Portfolio</a>
-            <a href="#portfolio-earthday" class="next">Next &gt;</a>
-          </div>
-          <div name="earthday">
-            <div class="full-portfolio" count="3">
-              <h1> Earth Day </h1>
-              <h3> Branding &nbsp;&middot;&nbsp; Illustration </h3>
-              <p>
-                Earth day is an annual event celebrated on April 22. On this day, events
-                worldwide are held to demonstrate support for environmental protection.
-                It was first celebrated in 1970, and is now coordinated globally by the
-                Earth Day Network and celebrated in more than 192 countries each year.
-                The SF Earth Day team wanted to promote the Street Fair by showcasing
-                Earth Day posters, banners and flyers across the city as well as social
-                media. The Street Fair was to host activities like dancing, concerts,
-                food stalls, etc. The design was briefed as “simplistic, something
-                that appealed to the likes of young kids and older adults”.
-              </p>
-            </div>
-            <a href="#portfolio-solutions_showcase" class="prev">&lt; Prev</a>
-            <a href="#portfolio" class="back">Back to Portfolio</a>
-            <a href="#portfolio-topdown" class="next">Next &gt;</a>
-          </div>
-          <div name="topdown">
-            <div class="full-portfolio" count="4">
-              <h1> Topdown Tours </h1>
-              <h3> Branding &nbsp;&middot;&nbsp; Graphic Design </h3>
-              <p>
-                Tony, a Bay Area native founded Topdown Tours, a luxury tour service
-                along with his wife.The tours were offered in Mini Coopers and were
-                custom made to fit the tourists needs/interests. He knows the Bay Area
-                like the back of his hand and it is his passion to share the rich,
-                diverse culture with everyone who decides to visit! Tony wanted to
-                have a logo designed for the company along with a brochure, which
-                he would leave at hotel desks and restaurants and also a design for
-                his website. He specifically wanted his Mini Cooper to be promoted
-                as he wanted people to know how luxurious the tours were going to be.
-              </p>
-            </div>
-            <a href="#portfolio-earthday" class="prev">&lt; Prev</a>
-            <a href="#portfolio" class="back">Back to Portfolio</a>
-            <a href="#portfolio-net_positive" class="next">Next &gt;</a>
-          </div>
-          <div name="net_positive">
-            <div class="full-portfolio" count="2">
-              <h1> Net Positive East Palo Alto </h1>
-              <h3> Infographics </h3>
-              <p>
-                The Net Positive East Palo Alto is a project of Sustainable Silicon
-                Valley. As work on the project was underway there was also a need
-                for more public awareness about why it was vital. Infographics were
-                chosen as our means of effective communication with the community
-                and I was assigned the task of designing a series of them.
-              </p>
-            </div>
-            <a href="#portfolio-topdown" class="prev">&lt; Prev</a>
-            <a href="#portfolio" class="back">Back to Portfolio</a>
-            <a href="#portfolio-water_technology" class="next">Next &gt;</a>
-          </div>
-          <div name="water_technology">
-            <div class="full-portfolio" count="7">
-              <h1> Water Technology Symposium </h1>
-              <h3> Publication Design </h3>
-              <p>
-                Sustainable Silicon Valley hosts a Water Technology Symposium
-                every year where they discuss current and future technologies to
-                implement for conservation of water. The speakers include some of
-                bay area’s leaders in the field. The project was to design a brochure
-                for the symposium that would be distributed at the venue.
-              </p>
-            </div>
-            <a href="#portfolio-net_positive" class="prev">&lt; Prev</a>
-            <a href="#portfolio" class="back">Back to Portfolio</a>
-          </div>
-        </li>
-        <li tab="process" index="3">
-          <div class="full-portfolio">
-            <h1>User and Market Research</h1>
-            <h3>Conducting stakeholder, user interviews, competitor reviews and analysing the results.</h3>
-            <img src="resources/portfolio/a-1.png" alt="" />
-            <img src="resources/portfolio/a-2.png" alt="" />
-            <h1>Strategic Objective</h1>
-            <h3>Based on the research, evaluating the strategic objective- to determine what can be achieved in the given time with the resources at hand.</h3>
-            <img src="resources/portfolio/a-3.png" alt="" />
-            <h1>User Scenarios</h1>
-            <h3>Creating user scenarios and mental models to discover what the users goes through to achieve their desired outcome.</h3>
-            <img src="resources/portfolio/a-4.png" alt="" />
-            <h1>Wireframing Prototypes</h1>
-            <h3>These allow the team and the business to assess the flow of the site/app.</h3>
-            <img src="resources/portfolio/a-5.png" alt="" />
-            <h1>High Fidelity Mockups</h1>
-            <h3>Bringing visual design into play and applying grid structure, typography, color-scheme and icons.</h3>
-            <img src="resources/portfolio/a-6.png" alt="" />
-            <h1>Interactive Prototypes</h1>
-            <h3>Developing prototypes that can be used to observe how the user interacts with the site/app.</h3>
-            <img src="resources/portfolio/a-7.png" alt="" />
-          </div>
-        </li>
-        <li tab="contact" index="4">
-          <!--
-          <div class="construction">
-            Working on some new things and I will be sharing them here shortly!
-          </div>
-          -->
-        </li>
-      </ul>
-    </div></div>
-    <div class="arrow right"></div>
+  <body id='v2'>
+    <div class='about'>
+      <div>
+        <h1>Hello</h1>
+        <p>
+          I'm Srishti, a user experience and interface designer living in
+          Palo Alto. Here's a look at some of my recent projects.
+        </p>
+        <a href='about.html'> More about me </a>
+      </div>
+    </div>
   </body>
 </html>
