@@ -421,11 +421,12 @@ table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
 #v2 div.page-section div.section > div.small-img > img { max-width: 60%; }
 #v2 div.page-section div.section > div > ul { list-style: disc; margin: 10px 0; }
 #v2 div.page-section div.section > div > ul > li { margin-left: 20px; }
-#v2 div.page-section div.section.bottom-line > div:after {
+#v2 div.page-section div.section.bottom-line > div > img { display: block; }
+#v2 div.page-section div.section.bottom-line > div:not(.no-line):after {
   height: 1px;
   content: ' ';
   display: block;
-  margin: -6px -10px 0;
+  margin: 0 -10px;
   background-color: #ccc;
 }
 #v2 div.page-section div.section > div > h3, #v2 div.page-section div.section > div > h4 {
