@@ -21,31 +21,7 @@
     <script type="text/javascript">
       $(function() {
         var template = Handlebars.compile($("#portfolio-template").html());
-        $([{
-          image: "resources/transbay/hero/1.png",
-          heading: "Transbay Transit Center",
-          subtitle: "Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX",
-          description: "The Transbay Center is a transit station and a neighborhood development project in downtown San Francisco that will serve the Bay Area's regional transportation system.",
-          url: "transbay.html",
-        }, {
-          image: "resources/solutions/main.png",
-          heading: "Solutions Showcase",
-          subtitle: "UI &nbsp;&middot;&nbsp; UX",
-          description: "The Solutions Showcase is a platform for companies to share sustainable ideas with other companies to reduce our carbon footprint and the use of non-renewable resources.",
-          url: "solutions.html",
-        }, {
-          image: "resources/danceoff/website/0.png",
-          heading: "Dance Off",
-          subtitle: "Branding &nbsp;&middot;&nbsp; UI",
-          description: "Dance Off is a boutique dance studio based in Palo Alto, California that promises to teach dancers and non-dancers the power and therapy of dance movement.",
-          url: "danceoff.html",
-        }, {
-          image: "resources/others/main.png",
-          heading: "Other Projects",
-          subtitle: "Infographics &nbsp;&middot;&nbsp; Print",
-          description: "Ensemble of standalone projects that I have worked on recently involving illustrations.",
-          url: "others.html",
-        }]).each(function(i, hash) {
+        $(Main.projects).each(function(i, hash) {
           var div = $(template(hash)).appendTo("body");
           div.find("a.img > img").load(function() {
             $(this).parent().next("div").height($(this).height());

@@ -507,6 +507,19 @@ table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
   margin-left: 15px;
   padding-bottom: 5px;
 }
+#v2 a.project-slider {
+  top: 50%;
+  width: 80px;
+  height: 50px;
+  display: block;
+  position: fixed;
+  margin-top: -20px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#v2 a.project-slider.next { right: 0; background-image: url(right_arrow.png); }
+#v2 a.project-slider.prev { left: 0; background-image: url(left_arrow.png); }
 
 #container ul:after,
 #image-slider:after,

@@ -6,6 +6,31 @@ return new Za.prototype.init(a,b,c,d,e)}m.Tween=Za,Za.prototype={constructor:Za,
 /* End jQuery */
 
 var Main = Main || {
+  projects: [{
+    image: "resources/transbay/main.png",
+    heading: "Transbay Transit Center",
+    subtitle: "Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX",
+    description: "The Transbay Center is a transit station and a neighborhood development project in downtown San Francisco that will serve the Bay Area's regional transportation system.",
+    url: "transbay.html",
+  }, {
+    image: "resources/solutions/main.png",
+    heading: "Solutions Showcase",
+    subtitle: "UI &nbsp;&middot;&nbsp; UX",
+    description: "The Solutions Showcase is a platform for companies to share sustainable ideas with other companies to reduce our carbon footprint and the use of non-renewable resources.",
+    url: "solutions.html",
+  }, {
+    image: "resources/danceoff/website/0.png",
+    heading: "Dance Off",
+    subtitle: "Branding &nbsp;&middot;&nbsp; UI",
+    description: "Dance Off is a boutique dance studio based in Palo Alto, California that promises to teach dancers and non-dancers the power and therapy of dance movement.",
+    url: "danceoff.html",
+  }, {
+    image: "resources/others/main.png",
+    heading: "Other Projects",
+    subtitle: "Infographics &nbsp;&middot;&nbsp; Print",
+    description: "Ensemble of standalone projects that I have worked on recently involving illustrations.",
+    url: "others.html",
+  }],
   setupImageSlider: function() {
     var timer, w = $(this);
     var selectImage = function(div) {
@@ -87,6 +112,7 @@ var Main = Main || {
     header.click(function(e) { e.stopPropagation(); });
 
     var menuBar = $("<ul></ul>").appendTo(header.children().first());
+    var path = window.location.pathname;
     menuBar.append("<li href='/' class='selected'>Portfolio</li>");
     menuBar.append("<li class='small' href='transbay.html'>Transbay Transit</li>");
     menuBar.append("<li class='small' href='solutions.html'>Solutions Showcase</li>");
@@ -96,38 +122,57 @@ var Main = Main || {
     menuBar.append("<li href='resume.html'>Resume</li>");
     menuBar.append("<li href='contact.html'>Contact</li>");
     menuBar.find("li").filter(function(i, el) {
-      var href = el.getAttribute('href'), path = window.location.pathname;
+      var href = el.getAttribute('href');
       return (path.substr(path.length - href.length) === href);
     }).first().addClass('selected').siblings('.selected').removeClass('selected');
+  },
+
+  setupProjectSlider: function() {
+    var path = window.location.pathname;
+    for (var i = 0; i < this.projects.length; i++) {
+      var url = this.projects[i].url;
+      if (path.substr(path.length - url.length) === url) {
+        var nextP = this.projects[(i + 1) % this.projects.length];
+        var prevP = this.projects[(i + this.projects.length - 1) % this.projects.length];
+        $("<a class='project-slider next'></a>").appendTo("body").attr('href', nextP.url).attr('title', nextP.heading);
+        $("<a class='project-slider prev'></a>").appendTo("body").attr('href', prevP.url).attr('title', prevP.heading);
+        break;
+      }
+    }
+  },
+
+  setupContactForm: function() {
+    $("#contact input[type='submit']").click(function() {
+      var form = $("#contact"), data = { to: "srishti7389@hotmail.com" }, invalid;
+      $(['email', 'message']).each(function(i, e) {
+        var el = form.find("[name='" + e + "']");
+        var val = $.trim(el.val());
+        if (!val || !val.length) {
+          if (!invalid) invalid = el;
+        } else {
+          data[e] = val;
+        }
+      });
+      if (invalid) { invalid.focus(); return false; }
+      jQuery.ajax({
+        type: 'POST',
+        crossDomain: true,
+        url: "https://tenxlist.com/send_email",
+        dataType: 'json',
+        data: data
+      });
+      form.find("thead th").text("Thanks, I will get back to you shortly!").
+          css('text-align', 'center').siblings("tbody").remove();
+      return false;
+    });
   },
 };
 
 $(function() {
   Main.initHeader();
   Main.initImageExpander();
+  Main.setupProjectSlider();
+  Main.setupContactForm();
   $("#image-slider").each(Main.setupImageSlider);
   $("div[href], li[href]").click(function() { window.location = this.getAttribute('href'); });
-  $("#contact input[type='submit']").click(function() {
-    var form = $("#contact"), data = { to: "srishti7389@hotmail.com" }, invalid;
-    $(['email', 'message']).each(function(i, e) {
-      var el = form.find("[name='" + e + "']");
-      var val = $.trim(el.val());
-      if (!val || !val.length) {
-        if (!invalid) invalid = el;
-      } else {
-        data[e] = val;
-      }
-    });
-    if (invalid) { invalid.focus(); return false; }
-    jQuery.ajax({
-      type: 'POST',
-      crossDomain: true,
-      url: "https://tenxlist.com/send_email",
-      dataType: 'json',
-      data: data
-    });
-    form.find("thead th").text("Thanks, I will get back to you shortly!").
-        css('text-align', 'center').siblings("tbody").remove();
-    return false;
-  });
 });
