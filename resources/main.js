@@ -50,6 +50,7 @@ var Main = Main || {
       var el = images[index];
       var src = el.getAttribute('expand');
       if (!src || !src.length) src = el.getAttribute('src');
+      $(el).closest('div.page-section').hasClass('process') ? div.addClass('process') : div.removeClass('process');
       div.find("img").attr('src', src).attr('style', el.getAttribute('style'));
       currentIndex = index;
     };
@@ -76,7 +77,7 @@ var Main = Main || {
   },
 
   initHeader: function() {
-    var header = $("<div id='main-header'><div><div id='logo' href='v2.html'></div></div></div>").prependTo("body");
+    var header = $("<div id='main-header'><div><div id='logo' href='/'></div></div></div>").prependTo("body");
     $(window).scroll(function() {
       $(this).scrollTop() < 100 ? header.removeClass('scrolled') : header.addClass('scrolled');
     });
@@ -86,7 +87,7 @@ var Main = Main || {
     header.click(function(e) { e.stopPropagation(); });
 
     var menuBar = $("<ul></ul>").appendTo(header.children().first());
-    menuBar.append("<li href='v2.html'>Portfolio</li>");
+    menuBar.append("<li href='/' class='selected'>Portfolio</li>");
     menuBar.append("<li class='small' href='transbay.html'>Transbay Transit</li>");
     menuBar.append("<li class='small' href='solutions.html'>Solutions Showcase</li>");
     menuBar.append("<li class='small' href='danceoff.html'>Dance Off</li>");
@@ -106,26 +107,6 @@ $(function() {
   Main.initImageExpander();
   $("#image-slider").each(Main.setupImageSlider);
   $("div[href], li[href]").click(function() { window.location = this.getAttribute('href'); });
-  /*$("#v2 div.page-section div.section.same-height").each(function(i, el) {
-    var loaded = 0, el = $(el);
-    var images = el.find("img");
-    var matchHeights = function() {
-      var divs = el.children("div");
-      var match = function(d1, d2) {
-        var diff = $(d2).height() - $(d1).height();
-        $("img", d1).css('margin-top', diff*0.6);
-        $(d1).css('margin-top', diff*0.4);
-      };
-      if (divs.first().height() < divs.last().height()) {
-        match(divs[0], divs[1]);
-      } else {
-        match(divs[1], divs[0]);
-      }
-    };
-    images.each(function(i, img) {
-      loaded += 1; if (loaded === images.length) matchHeights();
-    });
-  });*/
   $("#contact input[type='submit']").click(function() {
     var form = $("#contact"), data = { to: "srishti7389@hotmail.com" }, invalid;
     $(['email', 'message']).each(function(i, e) {
