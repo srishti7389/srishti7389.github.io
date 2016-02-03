@@ -19,7 +19,7 @@ var Main = Main || {
     description: "The Solutions Showcase is a platform for companies to share sustainable ideas with other companies to reduce our carbon footprint and the use of non-renewable resources.",
     url: "solutions.html",
   }, {
-    image: "resources/danceoff/website/0.png",
+    image: "resources/danceoff/main.png",
     heading: "Dance Off",
     subtitle: "Branding &nbsp;&middot;&nbsp; UI",
     description: "Dance Off is a boutique dance studio based in Palo Alto, California that promises to teach dancers and non-dancers the power and therapy of dance movement.",
