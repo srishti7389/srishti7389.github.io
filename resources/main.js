@@ -168,7 +168,7 @@ var Main = Main || {
   },
 };
 
-$("head").append('<meta name="viewport" content="max-width=device-width, user-scalable=0" />');
+$("head").append('<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0" />');
 $(function() {
   Main.initHeader();
   Main.initImageExpander();
