@@ -23,11 +23,13 @@
         var template = Handlebars.compile($("#portfolio-template").html());
         $(Main.projects).each(function(i, hash) {
           var div = $(template(hash)).appendTo("body");
+          if (i%2) div.addClass('even');
           div.find("a.img > img").load(function() {
             $(this).parent().next("div").height($(this).height());
           });
           div.find("h1[href]").click(function() { window.location = this.getAttribute('href'); });
         });
+        Main.setupSectionBG();
       });
     </script>
   </head>

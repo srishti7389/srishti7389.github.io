@@ -27,8 +27,8 @@ var Main = Main || {
   }, {
     image: "resources/others/main.png",
     heading: "Other Projects",
-    subtitle: "Infographics &nbsp;&middot;&nbsp; Print",
-    description: "Ensemble of standalone projects that I have worked on recently involving illustrations.",
+    subtitle: "Web &nbsp;&middot;&nbsp; Infographics &nbsp;&middot;&nbsp; Print",
+    description: "Ensemble of standalone projects that I have worked on recently including some illustration work.",
     url: "others.html",
   }],
   setupImageSlider: function() {
@@ -101,6 +101,9 @@ var Main = Main || {
     });
   },
 
+  setupSectionBG: function() {
+    $("#main-header ~ div").each(function(i, el) { if (i%2) el.style.backgroundColor = '#f8f8f8'; });
+  },
   initHeader: function() {
     var header = $("<div id='main-header'><div><div id='logo' href='/'></div></div></div>").prependTo("body");
     $(window).scroll(function() {
@@ -171,6 +174,7 @@ var Main = Main || {
 $("head").append('<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0" />');
 $(function() {
   Main.initHeader();
+  Main.setupSectionBG();
   Main.initImageExpander();
   Main.setupProjectSlider();
   Main.setupContactForm();

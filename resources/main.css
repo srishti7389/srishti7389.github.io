@@ -122,7 +122,6 @@ table { border-collapse: collapse; border-spacing: 0; }
 #v2 div#main-header ul > li.small + li:not(.small) { margin-top: 20px; }
 #v2 div#main-header ul > li:hover, #v2 div#main-header ul > li.selected { color: #c18188; }
 
-#v2 > div:nth-child(odd) { background-color: #f8f8f8; }
 #v2 > div > div {
   margin: auto;
   width: 1200px;
@@ -189,7 +188,7 @@ div#transbay h1:after { margin-left: 10px; } */
   top: 0; bottom: 0;
   left: 0; right: 0;
   text-align: center;
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0,0,0,0.9) !important;
   -webkit-user-select:none;
   -moz-user-select:none;
   -ms-user-select:none;
@@ -333,8 +332,8 @@ table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
   font-weight: 300;
 }
 #v2 div.portfolio-item a:not(.img) { position: absolute; bottom: 0; }
-#v2 div.portfolio-item:nth-child(even) a.img { float: right; }
-#v2 div.portfolio-item:nth-child(even) a.img + div { float: left; }
+#v2 div.portfolio-item.even a.img { float: right; }
+#v2 div.portfolio-item.even a.img + div { float: left; }
 
 #image-slider {
   width: 800px;
