@@ -9,6 +9,7 @@ var Main = Main || {
   projects: [{
     image: "resources/transbay/main.png",
     heading: "Transbay Transit Center",
+    sidebar_text: "Transbay Transit",
     subtitle: "Branding &nbsp;&middot;&nbsp; UI &nbsp;&middot;&nbsp; UX",
     description: "The Transbay Center is a transit station and a neighborhood development project in downtown San Francisco that will serve the Bay Area's regional transportation system.",
     url: "transbay.html",
@@ -18,6 +19,13 @@ var Main = Main || {
     subtitle: "UI &nbsp;&middot;&nbsp; UX",
     description: "The Solutions Showcase is a platform for companies to share sustainable ideas with other companies to reduce our carbon footprint and the use of non-renewable resources.",
     url: "solutions.html",
+  }, {
+    image: "resources/stella_dot/hero/1.png",
+    heading: "Stella & Dot - Category Pages",
+    sidebar_text: "Stella & Dot",
+    subtitle: "UI &nbsp;&middot;&nbsp; UX",
+    description: "Stella & Dot is an e-commerce platform for women's accessories, and the task was to integrate user generated content with inventory & model images on their category pages.",
+    url: "stella_dot.html",
   }, {
     image: "resources/danceoff/main.png",
     heading: "Dance Off",
@@ -117,10 +125,10 @@ var Main = Main || {
     var menuBar = $("<ul></ul>").appendTo(header.children().first());
     var path = window.location.pathname;
     menuBar.append("<li href='/' class='selected'>Portfolio</li>");
-    menuBar.append("<li class='small' href='transbay.html'>Transbay Transit</li>");
-    menuBar.append("<li class='small' href='solutions.html'>Solutions Showcase</li>");
-    menuBar.append("<li class='small' href='danceoff.html'>Dance Off</li>");
-    menuBar.append("<li class='small' href='others.html'>Other Projects</li>");
+    for (var i = 0; i < this.projects.length; i++) {
+      var p = this.projects[i];
+      menuBar.append("<li class='small' href='" + p.url + "'>" + (p.sidebar_text || p.heading) + "</li>");
+    }
     menuBar.append("<li href='about.html'>About</li>");
     menuBar.append("<li href='resume.html'>Resume</li>");
     menuBar.append("<li href='contact.html'>Contact</li>");

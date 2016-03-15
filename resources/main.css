@@ -417,7 +417,9 @@ table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
 #v2 div.page-section div.section > div.small-img { text-align: center; }
 #v2 div.page-section div.section > div.small-img > img { max-width: 60%; }
 #v2 div.page-section div.section > div > ul { list-style: disc; margin: 10px 0; }
-#v2 div.page-section div.section > div > ul > li { margin-left: 20px; }
+#v2 div.page-section div.section > div ol { list-style-type: lower-roman; margin: 10px 0; }
+#v2 div.page-section div.section > div > p + ol { margin-top: -15px; }
+#v2 div.page-section div.section > div > ol > li, #v2 div.page-section div.section > div > ul > li { margin-left: 20px; }
 #v2 div.page-section div.section.bottom-line > div > img { display: block; }
 #v2 div.page-section div.section.bottom-line > div:not(.no-line):after {
   height: 1px;
@@ -433,6 +435,7 @@ table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
   margin: 10px 0 30px;
   text-transform: uppercase;
 }
+#v2 div.page-section div.section > div > h4.inline { margin: 30px 0 10px; color: #c18188; }
 #v2 div.page-section div.section > div > h3 { color: #c18188; font-size: 1.5em; line-height: 1.3em; }
 #v2 div.page-section div.section.border img { border: 1px solid #eee; }
 #v2 div.page-section div.section.same-height { display: table; }
