@@ -334,6 +334,7 @@ table#about-me tfoot td img { width: 32px; height: 32px; margin-left: 8px; }
 #v2 div.portfolio-item a:not(.img) { position: absolute; bottom: 0; }
 #v2 div.portfolio-item.even a.img { float: right; }
 #v2 div.portfolio-item.even a.img + div { float: left; }
+#v2 div.portfolio-item h3 + div { line-height: 150%; }
 
 #image-slider {
   width: 800px;
