@@ -4,26 +4,25 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Srishti Goyal Mittal | UI/ UX Designer</title>
     <link rel="icon" type="image/png" href="resources/favicon.png" />
-    <link rel="stylesheet" type="text/css" href="resources/main.css" />
-    <script type="text/javascript" src="resources/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/v2.css" />
+    <script type="text/javascript" src="resources/v2.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script id='portfolio-template' type="text/x-handlebars-template">
-      <div class='portfolio-item'><div>
-        <a href="{{url}}" class='img'><img src="{{image}}" alt="{{heading}}" /></a>
-        <div>
+      <div class='portfolio-item'>
+        <div><a href="{{url}}" class='img'>
+          <img src="{{image}}" alt="{{heading}}" />
+        </a><div>
           <h1 href="{{url}}"> {{{heading}}} </h1>
-          <h3> {{{subtitle}}} </h3>
           <div> {{description}} </div>
-          <a href="{{url}}">View Project</a>
-        </div>
-      </div></div>
+          <a href="{{url}}">View Case Study</a>
+        </div></div>
+      </div>
     </script>
     <script type="text/javascript">
       $(function() {
         var template = Handlebars.compile($("#portfolio-template").html());
         $(Main.projects).each(function(i, hash) {
           var div = $(template(hash)).appendTo("body");
-          if (i%2) div.addClass('even');
           div.find("a.img > img").load(function() {
             $(this).parent().next("div").height($(this).height());
           });
@@ -33,15 +32,14 @@
       });
     </script>
   </head>
-  <body id='v2'>
-    <div class='about'>
-      <div>
+  <body>
+    <div id='hero' selected-tab='1'>
+      <div class='content'>
         <h1>Hello</h1>
         <p>
-          I'm Srishti, a user experience and interface designer living in
+          I'm Srishti, a user experience and interface designer living in <br/>
           Palo Alto. Here's a look at some of my recent projects.
         </p>
-        <a href='about.html'> More about me </a>
       </div>
     </div>
   </body>

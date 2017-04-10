@@ -1,3 +1,5 @@
+@import "https://fonts.googleapis.com/css?family=Playfair+Display|Raleway";
+
 * {
 	margin:0;
 	padding: 0;
@@ -12,6 +14,7 @@ h1 {
 	font-style: normal;
 	padding-bottom: 50px;
 	font-size: 32px;
+	line-height: 1em;
 }
 h3 {
 	font-size: 18px;
@@ -20,36 +23,57 @@ h3 {
 }
 
 #header ul {
-	height: 50px;
 	margin: auto;
-	font-size: 13px;
-	line-height: 50px;
+	list-style: none;
 	max-width: 1200px;
 	padding: 10px 100px;
-	box-sizing: content-box;
 	font-family: 'Raleway';
-	text-transform: uppercase;
+	box-sizing: content-box;
 }
 
 #header ul li {
 	float: right;
-	display: block;
+	height: 50px;
+	font-size: 13px;
+	line-height: 50px;
 	margin-left: 50px;
-}
-#header ul li a {
-	color: inherit;
-	text-decoration: none;
+	white-space: nowrap;
 }
 #header ul li#logo {
 	float: none;
 	margin-left: 0;
 	overflow: hidden;
-	background: url(elevate/Logo-gray.svg) no-repeat left;
+	background: url(Logo-gray.svg) no-repeat left;
 	background-size: contain;
 }
 #hero[style] #header ul li#logo {
-	background-image: url(elevate/Logo-white.svg);
+	background-image: url(Logo-white.svg);
 }
+
+#header ul li a, div.portfolio-item > div > div a {
+	opacity: 0.6;
+	color: inherit;
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	text-transform: uppercase;
+	line-height: 1em !important;
+}
+#header ul li a:after, div.portfolio-item > div > div a:after {
+	opacity: 0;
+	content: '';
+	position: absolute;
+	left: 8px; right: 8px;
+	bottom: -8px; height: 1px;
+	background-color: #1c1c1c;
+	-webkit-transition: opacity 0.6s;
+	-moz-transition: opacity 0.6s;
+	-ms-transition: opacity 0.6s;
+	-o-transition: opacity 0.6s;
+	transition: opacity 0.6s;
+}
+#header ul li a:hover:after, div.portfolio-item > div > div a:hover:after, #header ul li a.selected:after,
+#header ul li a:hover, div.portfolio-item > div > div a:hover, #header ul li a.selected { opacity: 1; }
 
 #hero {
 	color: #1c1c1c;
@@ -57,6 +81,36 @@ h3 {
 	min-height: 100%;
 	overflow-y: hidden;
 	box-sizing: border-box;
+}
+
+div.portfolio-item > div {
+	margin: auto;
+	padding: 50px 0;
+	max-width: 1200px;
+	font-family: 'Raleway';
+}
+div.portfolio-item > div:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+div.portfolio-item > div > * {
+	width: 50%;
+	display: inline-block;
+	box-sizing: border-box;
+	vertical-align: middle;
+}
+div.portfolio-item > div img { width: 100%; }
+div.portfolio-item > div > div {
+	font-size: 15px;
+	line-height: 1.5em;
+	padding-left: 50px;
+	height: auto !important;
+}
+div.portfolio-item > div > div > a {
+	font-size: 0.75em;
+	margin-top: 20px;
+	display: inline-block;
 }
 
 div.content {
@@ -67,11 +121,8 @@ div.content {
 	text-align: center;
 	font-family: 'Raleway';
 }
-#hero div.content {
-	padding-bottom: 0;
-	margin-bottom: -20px;
-}
-#hero[style], #hero[style] div.content { color: #fff; }
+#hero[style], #hero[style] div.content { color: #fff; padding-bottom: 0; }
+#hero[style] #header ul li a:after { background-color: #fff; }
 
 div.content p {
 	margin: auto;
