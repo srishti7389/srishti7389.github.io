@@ -121,6 +121,7 @@ div.content {
 	text-align: center;
 	font-family: 'Raleway';
 }
+div.content.smaller { max-width: 800px; }
 #hero[style], #hero[style] div.content { color: #fff; padding-bottom: 0; }
 #hero[style] #header ul li a:after { background-color: #fff; }
 

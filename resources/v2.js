@@ -21,15 +21,15 @@ var Main = Main || {
     description: "Elfkins is an interactive toy that helps adults communicate with their children in creative and fun ways when they are apart.",
     url: "elfkins.html",
   }, {
-    image: "resources/solutions/main.png",
-    heading: "Solutions Showcase",
-    description: "The Solutions Showcase is a platform for companies to share sustainable ideas with other companies to reduce our carbon footprint and the use of non-renewable resources.",
-    url: "solutions.html",
-  }, {
-    image: "resources/transbay/hero/2.png",
+    image: "resources/transbay/main.png",
     heading: "Transbay Transit Center",
     description: "The Transbay Center is a transit station and a neighborhood development project in downtown San Francisco that will serve the Bay Area's regional transportation system.",
     url: "transbay.html",
+  }, {
+    image: "resources/solutions/hero.png",
+    heading: "Solutions Showcase",
+    description: "The Solutions Showcase is a platform for companies to share sustainable ideas with other companies to reduce our carbon footprint and the use of non-renewable resources.",
+    url: "solutions.html",
   }, {
     image: "resources/stella_dot/hero/1.png",
     heading: "Stella & Dot - Category Pages",
@@ -148,38 +148,23 @@ var Main = Main || {
   },
   initHeader: function() {
     var heroDiv = $("body > div#hero");
-    if (heroDiv[0]) {
-      var ul = heroDiv.prepend("<div id='header'><ul></ul></div>").find("ul");
-      ul.prepend("<li id='logo'><a href='/'>&nbsp;</a></li>");
-      ul.prepend("<li><a href='/'>Work</a></li>");
-      ul.prepend("<li><a href='about.html'>About</a></li>");
-      ul.prepend("<li><a href='contact.html'>Contact</a></li>");
-      if (heroDiv.attr('selected-tab')) {
-        var lis = ul.children("li");
-        $(lis.get(lis.length - 1 - parseInt(heroDiv.attr('selected-tab')))).children("a").addClass('selected');
-      }
-      return;
-    }
+    if (!heroDiv[0]) return;
 
-    var header = $("<div id='main-header'><div><div id='logo' href='/'></div></div></div>").prependTo("body");
-    $(window).scroll(function() {
-      $(this).scrollTop() < 100 ? header.removeClass('scrolled') : header.addClass('scrolled');
+    var ul = heroDiv.prepend("<div id='header'><ul></ul></div>").find("ul");
+    var tabs = [
+      { id: "logo", attrs: { href: "/" }, html: "" },
+      { attrs: { href: "/" }, html: "Work" },
+      { attrs: { href: "about.html" }, html: "About" },
+      { attrs: { href: "mailto:srishti7389@gmail.com", target: "_blank" }, html: "Contact" },
+    ];
+    var selectedTab = heroDiv.attr('selected-tab');
+    $.each(tabs, function(i, props) {
+      var li = $("<li><a></a></li>").prependTo(ul);
+      var a = li.children("a").html(props.html);
+      if (props.id) li.attr('id', props.id);
+      $.each(props.attrs, a.attr.bind(a));
+      if (selectedTab && parseInt(selectedTab) === i) a.addClass('selected');
     });
-    var settings = $("<div id='settings'></div>").appendTo(header.children().first());
-    $("body").click(function() { settings.removeClass('selected'); });
-    settings.click(function() { settings.toggleClass('selected'); });
-    header.click(function(e) { e.stopPropagation(); });
-
-    var menuBar = $("<ul></ul>").appendTo(header.children().first());
-    var path = window.location.pathname;
-    menuBar.append("<li href='/' class='selected'>Work</li>");
-    menuBar.append("<li href='about.html'>About</li>");
-    menuBar.append("<li href='resume.html'>Resume</li>");
-    menuBar.append("<li href='contact.html'>Contact</li>");
-    menuBar.find("li").filter(function(i, el) {
-      var href = el.getAttribute('href');
-      return (path.substr(path.length - href.length) === href);
-    }).first().addClass('selected').siblings('.selected').removeClass('selected');
   },
 
   setupContactForm: function() {
