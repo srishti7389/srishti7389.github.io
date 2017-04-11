@@ -24,7 +24,7 @@ var Main = Main || {
     image: "resources/transbay/main.png",
     heading: "Transbay Transit Center",
     description: "The Transbay Center is a transit station and a neighborhood development project in downtown San Francisco that will serve the Bay Area's regional transportation system.",
-    url: "transbay.html",
+    url: "transbay2.html",
   }, {
     image: "resources/solutions/hero.png",
     heading: "Solutions Showcase",
