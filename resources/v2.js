@@ -24,7 +24,7 @@ var Main = Main || {
     image: "resources/transbay/main.png",
     heading: "Transbay Transit Center",
     description: "The Transbay Center is a transit station and a neighborhood development project in downtown San Francisco that will serve the Bay Area's regional transportation system.",
-    url: "transbay2.html",
+    url: "transbay.html",
   }, {
     image: "resources/solutions/hero.png",
     heading: "Solutions Showcase",
@@ -143,9 +143,6 @@ var Main = Main || {
     });
   },
 
-  setupSectionBG: function() {
-    $("#main-header ~ div").each(function(i, el) { if (i%2) el.style.backgroundColor = '#f8f8f8'; });
-  },
   initHeader: function() {
     var heroDiv = $("body > div#hero");
     if (!heroDiv[0]) return;
@@ -165,41 +162,26 @@ var Main = Main || {
       $.each(props.attrs, a.attr.bind(a));
       if (selectedTab && parseInt(selectedTab) === i) a.addClass('selected');
     });
-  },
 
-  setupContactForm: function() {
-    $("#contact input[type='submit']").click(function() {
-      var form = $("#contact"), data = { to: "srishti7389@hotmail.com" }, invalid;
-      $(['email', 'message']).each(function(i, e) {
-        var el = form.find("[name='" + e + "']");
-        var val = $.trim(el.val());
-        if (!val || !val.length) {
-          if (!invalid) invalid = el;
-        } else {
-          data[e] = val;
-        }
-      });
-      if (invalid) { invalid.focus(); return false; }
-      jQuery.ajax({
-        type: 'POST',
-        crossDomain: true,
-        url: "https://tenxlist.com/send_email",
-        dataType: 'json',
-        data: data
-      });
-      form.find("thead th").text("Thanks, I will get back to you shortly!").
-          css('text-align', 'center').siblings("tbody").remove();
-      return false;
-    });
+    // Add footer
+    var footer = $("<div id='footer'><div><span></span></div></div").appendTo("body").filter("#footer");
+    var li = footer.append("<ul><li>&copy; 2017 Srishti Mittal</li><li></li></ul>").find("ul > li").last();
+    li.append("<a href='mailto:srishti7389@gmail.com' target='_blank' class='fa fa-envelope-o'></a>");
+    li.append("<a href='https://dribbble.com/SGM' target='_blank' class='fa fa-dribbble'></a>");
+    var url = window.location.href.toLowerCase();
+    for (var i = 0, len = this.projects.length; i < len; i++) {
+      if (url.indexOf(this.projects[i].url) >= 0) {
+        footer.children("div").attr('href', this.projects[(i+1) % len].url);
+        break;
+      }
+    }
   },
 };
 
 $("head").append('<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0" />');
 $(function() {
   Main.initHeader();
-  Main.setupSectionBG();
   Main.initImageExpander();
-  Main.setupContactForm();
   $("#image-slider").each(Main.setupImageSlider);
   $("div[href], li[href]").click(function() { window.location = this.getAttribute('href'); });
 });

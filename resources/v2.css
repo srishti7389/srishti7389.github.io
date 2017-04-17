@@ -1,4 +1,5 @@
 @import "https://fonts.googleapis.com/css?family=Playfair+Display|Raleway";
+@import url(font-awesome.min.css);
 
 * {
 	margin:0;
@@ -46,12 +47,13 @@ h3 {
 	background: url(Logo-gray.svg) no-repeat left;
 	background-size: contain;
 }
+#header ul li#logo > a { height: 100%; width: 50px; }
 #hero[style] #header ul li#logo {
 	background-image: url(Logo-white.svg);
 }
 
-#header ul li a, div.portfolio-item > div > div a {
-	opacity: 0.6;
+#header ul li a, div.portfolio-item > div > div a, div#footer > div[href] > span {
+	opacity: 0.75;
 	color: inherit;
 	position: relative;
 	display: inline-block;
@@ -59,7 +61,7 @@ h3 {
 	text-transform: uppercase;
 	line-height: 1em !important;
 }
-#header ul li a:after, div.portfolio-item > div > div a:after {
+#header ul li a:after, div.portfolio-item > div > div a:after, div#footer > div[href] > span:after {
 	opacity: 0;
 	content: '';
 	position: absolute;
@@ -73,12 +75,53 @@ h3 {
 	transition: opacity 0.6s;
 }
 #header ul li a:hover:after, div.portfolio-item > div > div a:hover:after, #header ul li a.selected:after,
-#header ul li a:hover, div.portfolio-item > div > div a:hover, #header ul li a.selected { opacity: 1; }
+#header ul li a:hover, div.portfolio-item > div > div a:hover, #header ul li a.selected,
+div#footer > div[href]:hover > span:after, div#footer > div[href]:hover > span { opacity: 1; }
+
+div#footer {
+	margin: auto;
+	color: #1c1c1c;
+	font-size: 14px;
+	max-width: 1200px;
+	background-color: #fff;
+}
+div#footer > div {
+	min-height: 1px;
+	cursor: pointer;
+	text-align: center;
+	position: relative;
+	background-color: #ededed;
+	font-family: 'Raleway', sans-serif;
+}
+div#footer > div[href] > span { margin: 12px; }
+div#footer > div[href] > span:before { content: 'Next Project'; }
+div#footer > div[href] > span:after { bottom: -6px; }
+div#footer > ul {
+	padding: 20px 0;
+	list-style: none;
+	font-family: 'Raleway', sans-serif;
+}
+div#footer > ul:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+div#footer > ul > li:first-child { float: left; }
+div#footer > ul > li:last-child { float: right; }
+div#footer > ul a {
+	opacity: 0.6;
+	color: inherit;
+	font-size: 1.25em;
+	margin-left: 10px;
+	text-decoration: none;
+}
+div#footer > ul a:hover {
+	opacity: 1;
+}
 
 #hero {
 	color: #1c1c1c;
 	font-size: 15px;
-	min-height: 100%;
 	overflow-y: hidden;
 	box-sizing: border-box;
 }
@@ -137,6 +180,15 @@ div.content p {
   margin-bottom: 30px;
   line-height: 1.5em;
 }
+div.content p a {
+	opacity: 0.7;
+	color: inherit;
+	text-decoration: none;
+}
+div.content p a:hover {
+	opacity: 1;
+	text-decoration: underline;
+}
 div.content p span.bullet { display: block; text-align: left; }
 div.content p span.bullet:before {
 	content: '';
@@ -173,7 +225,7 @@ div.content p.half-width {
 	padding-right: 10px;
 	box-sizing: border-box;
 }
-div.content p.half-width:before {
+div.content p[title]:before {
 	display: block;
 	font-size: 1.1em;
 	text-align: left;
@@ -196,7 +248,7 @@ div.content img.half-width {
 	margin: 20px 5% 0;
 }
 div.content img.with-shadow {
-	box-shadow: rgba(169, 169, 169, 0.3) 0 0 96px 14px;
+	box-shadow: rgba(169, 169, 169, 0.2) 0 0 30px 12px;
 }
 div.content img:not(.half-width) + img, div.content br + img { margin-top: 50px; }
 div.content img + br { clear: both; }
@@ -277,3 +329,14 @@ ul#flows-image li img{
 	display: inline-block;
 	vertical-align: middle;
 }
+table#about {
+	width: 80%;
+	margin: auto;
+	table-layout: fixed;
+}
+table#about tr > td:first-child {
+	width: 60%;
+	padding-right: 3%;
+}
+table#about tr > td > img { width: 100% !important; }
+table#about tr > td p.attribution { padding-right: 0; }

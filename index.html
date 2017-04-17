@@ -21,24 +21,25 @@
     <script type="text/javascript">
       $(function() {
         var template = Handlebars.compile($("#portfolio-template").html());
+        var footer = $("body > div#footer")[0];
         $(Main.projects).each(function(i, hash) {
-          var div = $(template(hash)).appendTo("body");
+          var div = $(template(hash));
+          footer ? div.insertBefore(footer) : div.appendTo("body");
           div.find("a.img > img").load(function() {
             $(this).parent().next("div").height($(this).height());
           });
           div.find("h1[href]").click(function() { window.location = this.getAttribute('href'); });
         });
-        Main.setupSectionBG();
       });
     </script>
   </head>
   <body>
     <div id='hero' selected-tab='1'>
       <div class='content'>
-        <h1>Hello</h1>
+        <h1>Hi there</h1>
         <p>
-          I'm Srishti, a user experience and interface designer living in <br/>
-          Palo Alto. Here's a look at some of my recent projects.
+          My name is Srishti, I'm a designer working at The Myers-Briggs Company, living in Palo Alto. <br/>
+          Scroll to view some of my recent projects.
         </p>
       </div>
     </div>
