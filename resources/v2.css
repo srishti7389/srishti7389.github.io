@@ -121,6 +121,11 @@ div.content {
 	text-align: center;
 	font-family: 'Raleway';
 }
+div.content:after {
+	content: '';
+	clear: both;
+	display: block;
+}
 div.content.smaller { max-width: 800px; }
 #hero[style], #hero[style] div.content { color: #fff; padding-bottom: 0; }
 #hero[style] #header ul li a:after { background-color: #fff; }
@@ -132,6 +137,19 @@ div.content p {
   margin-bottom: 30px;
   line-height: 1.5em;
 }
+div.content p span.bullet { display: block; text-align: left; }
+div.content p span.bullet:before {
+	content: '';
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	margin-right: 10px;
+	display: inline-block;
+	vertical-align: middle;
+	background-color: #1c1c1c;
+}
+div.content p span.bullet:first-of-type { padding-top: 10px; }
+div.content p span.bullet:last-of-type { padding-bottom: 10px; }
 div.content p:last-child { margin-bottom: 0; }
 div.content p.quotes {
 	opacity: 0.4;
@@ -148,6 +166,22 @@ div.content p.attribution {
 	font-weight: 100;
 	padding: 0 60px;
 }
+div.content p.half-width {
+	width: 50%;
+	float: left;
+	padding-left: 10px;
+	padding-right: 10px;
+	box-sizing: border-box;
+}
+div.content p.half-width:before {
+	display: block;
+	font-size: 1.1em;
+	text-align: left;
+	font-weight: bold;
+	content: attr(title);
+}
+div.content p.half-width + br { clear: both; }
+
 div.content img + p.attribution { padding: 0; }
 div.content img { width: 100%; }
 div.content img.small { width: auto; }
@@ -156,7 +190,7 @@ div.content img.smaller {
 	max-width: 800px;
 }
 div.content img.smaller.small { max-width: 600px; }
-div.content img.half-width  {
+div.content img.half-width {
 	float: left;
 	width: 40%;
 	margin: 20px 5% 0;
@@ -167,6 +201,17 @@ div.content img.with-shadow {
 div.content img:not(.half-width) + img, div.content br + img { margin-top: 50px; }
 div.content img + br { clear: both; }
 div.content img + h1 { padding-top: 70px; }
+div.content img.overlap {
+	width: 70%;
+	z-index: 1;
+	float: left;
+	position: relative;
+}
+div.content img.overlap + img.overlap {
+	z-index: 0;
+	float: right;
+	margin-top: -80px;
+}
 
 #hero div.content { padding-top: 20px; }
 #hero div.content img {
@@ -225,15 +270,10 @@ ul#flows-image li img{
 	width: 60%;
 	margin: auto;
 }
-
-#elevate-documentation div.content img {
-	width: 70%;
-	z-index: 1;
-	float: left;
-	position: relative;
-}
-#elevate-documentation div.content img:last-of-type {
-	z-index: 0;
-	float: right;
-	margin-top: -80px;
+#solutions-wireframes div.content img.half-width  {
+	width: 50%;
+	float: none;
+	margin: 20px 0 0;
+	display: inline-block;
+	vertical-align: middle;
 }

@@ -31,7 +31,7 @@ var Main = Main || {
     description: "The Solutions Showcase is a platform for companies to share sustainable ideas with other companies to reduce our carbon footprint and the use of non-renewable resources.",
     url: "solutions.html",
   }, {
-    image: "resources/stella_dot/hero/1.png",
+    image: "resources/stella_dot/landing.png",
     heading: "Stella & Dot - Category Pages",
     description: "Stella & Dot is an e-commerce platform for women's accessories, and the task was to integrate user generated content with inventory & model images on their category pages.",
     url: "stella_dot.html",
