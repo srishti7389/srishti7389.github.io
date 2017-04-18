@@ -9,12 +9,12 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
     <script id='portfolio-template' type="text/x-handlebars-template">
       <div class='portfolio-item'>
-        <div><a href="{{url}}" class='img'>
-          <img src="{{image}}" alt="{{heading}}" />
+        <div class='{{css_class}}'><a href="{{url}}" class='img'>
+          <img src="{{image}}" class='{{image_class}}' alt="{{heading}}" />
         </a><div>
           <h1 href="{{url}}"> {{{heading}}} </h1>
           <div> {{description}} </div>
-          <a href="{{url}}">View Case Study</a>
+          <a href="{{url}}"> {{#if cta_text}} {{cta_text}}{{else}}View Case Study{{/if}} </a>
         </div></div>
       </div>
     </script>
@@ -28,7 +28,6 @@
           div.find("a.img > img").load(function() {
             $(this).parent().next("div").height($(this).height());
           });
-          div.find("h1[href]").click(function() { window.location = this.getAttribute('href'); });
         });
       });
     </script>
@@ -43,5 +42,6 @@
         </p>
       </div>
     </div>
+    <div></div>
   </body>
 </html>

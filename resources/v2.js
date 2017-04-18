@@ -18,6 +18,7 @@ var Main = Main || {
   }, {
     image: "resources/elfkins/ElfkinsLanding.png",
     heading: "Elfkins iOS App",
+    cta_text: "View Project",
     description: "Elfkins is an interactive toy that helps adults communicate with their children in creative and fun ways when they are apart.",
     url: "elfkins.html",
   }, {
@@ -26,7 +27,7 @@ var Main = Main || {
     description: "The Transbay Center is a transit station and a neighborhood development project in downtown San Francisco that will serve the Bay Area's regional transportation system.",
     url: "transbay.html",
   }, {
-    image: "resources/solutions/hero.png",
+    image: "resources/solutions/landing.png",
     heading: "Solutions Showcase",
     description: "The Solutions Showcase is a platform for companies to share sustainable ideas with other companies to reduce our carbon footprint and the use of non-renewable resources.",
     url: "solutions.html",
@@ -38,6 +39,7 @@ var Main = Main || {
   }, {
     image: "resources/danceoff/main.png",
     heading: "Dance Off",
+    cta_text: "View Project",
     description: "Dance Off is a boutique dance studio based in Palo Alto, California that promises to teach dancers and non-dancers the power and therapy of dance movement.",
     url: "danceoff.html",
   }],
@@ -183,5 +185,7 @@ $(function() {
   Main.initHeader();
   Main.initImageExpander();
   $("#image-slider").each(Main.setupImageSlider);
-  $("div[href], li[href]").click(function() { window.location = this.getAttribute('href'); });
+  $(document).on("click", "div[href], li[href], h1[href]", function() {
+    window.location = this.getAttribute('href');
+  });
 });
