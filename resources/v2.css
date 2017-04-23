@@ -1,11 +1,34 @@
-@import "https://fonts.googleapis.com/css?family=Playfair+Display|Raleway";
+@import "https://fonts.googleapis.com/css?family=Playfair+Display|Open+Sans";
 @import url(font-awesome.min.css);
+
+html { font-size: 14px; overflow-x: hidden; }
+body {
+	width: 100%;
+	position: relative;
+	-webkit-transition: margin 0.25s ease-in;
+	-moz-transition: margin 0.25s ease-in;
+	-ms-transition: margin 0.25s ease-in;
+	-o-transition: margin 0.25s ease-in;
+	transition: margin 0.25s ease-in;
+}
+ul li#mobile-menu > a {
+	width: 26px;
+	height: 100%;
+	display: inline-block;
+	background: url(hamburger.svg) no-repeat center right;
+	background-size: contain;
+}
+body.hamburger { margin-left: -70%; }
+body.hamburger ul li#mobile-menu a { background-image: url(close.svg); }
+#hero[style] ul li#mobile-menu > a { background-image: url(hamburger-w.svg); }
+body.hamburger #hero[style] ul li#mobile-menu > a { background-image: url(close-w.svg); }
 
 * {
 	margin:0;
 	padding: 0;
 	border: 0;
 	outline: 0;
+	font-family: 'Open Sans', sans-serif;
 }
 
 div[href], h1[href], li[href] { cursor: pointer; }
@@ -16,45 +39,46 @@ h1 {
 	font-weight: 100;
 	font-style: normal;
 	padding-bottom: 50px;
-	font-size: 32px;
+	font-size: 2rem;
 	line-height: 1em;
 }
 h3 {
-	font-size: 18px;
-	font-weight: bold;
+	font-weight: 100;
+	font-size: 1.13rem;
 	padding-bottom: 10px;
 }
+p { line-height: 1.7em; font-weight: 100; }
 
 #header ul {
 	margin: auto;
+	padding: 10px 0;
 	list-style: none;
 	max-width: 1200px;
-	padding: 10px 100px;
-	font-family: 'Raleway';
 	box-sizing: content-box;
 }
 
 #header ul li {
 	float: right;
 	height: 50px;
-	font-size: 13px;
+	font-size: 0.88rem;
 	line-height: 50px;
 	margin-left: 50px;
 	white-space: nowrap;
 }
+#header ul li#mobile-menu, #mobile-menu-list { display: none; }
 #header ul li#logo {
 	float: none;
 	margin-left: 0;
 	overflow: hidden;
 	background: url(Logo-gray.svg) no-repeat left;
-	background-size: contain;
+	background-size: auto 90%;
 }
 #header ul li#logo > a { height: 100%; width: 50px; }
 #hero[style] #header ul li#logo {
 	background-image: url(Logo-white.svg);
 }
 
-#header ul li a, div.portfolio-item > div > div a, div#footer > div[href] > span {
+#header ul li a, div.portfolio-item > div > div a, div#footer > div[href] > span, #mobile-menu-list > li > a {
 	opacity: 0.75;
 	color: inherit;
 	position: relative;
@@ -63,7 +87,7 @@ h3 {
 	text-transform: uppercase;
 	line-height: 1em !important;
 }
-#header ul li a:after, div.portfolio-item > div > div a:after, div#footer > div[href] > span:after {
+#header ul li a:after, div.portfolio-item > div > div a:after, div#footer > div[href] > span:after, #mobile-menu-list > li > a:after {
 	opacity: 0;
 	content: '';
 	position: absolute;
@@ -79,13 +103,17 @@ h3 {
 #header ul li a:hover:after, #header ul li a:hover,
 #header ul li a.selected:after, #header ul li a.selected,
 div.portfolio-item > div > div:hover a:after, div.portfolio-item > div > div:hover a,
+#mobile-menu-list > li > a:hover:after, #mobile-menu-list > li > a:hover,
+#mobile-menu-list > li > a.selected:after, #mobile-menu-list > li > a.selected,
 div#footer > div[href]:hover > span:after, div#footer > div[href]:hover > span { opacity: 1; }
+#header ul li#mobile-menu a:hover:after { opacity: 0; }
+#header ul li#mobile-menu a:hover { opacity: 0.75; }
 
 div#footer {
 	margin: auto;
 	color: #1c1c1c;
-	font-size: 14px;
 	max-width: 1200px;
+	font-size: 0.88rem;
 	background-color: #fff;
 }
 div#footer > div {
@@ -93,7 +121,6 @@ div#footer > div {
 	text-align: center;
 	position: relative;
 	background-color: #ededed;
-	font-family: 'Raleway', sans-serif;
 }
 div#footer > div[href] > span { margin: 12px; }
 div#footer > div[href] > span:before { content: 'Next Project'; }
@@ -101,7 +128,6 @@ div#footer > div[href] > span:after { bottom: -6px; }
 div#footer > ul {
 	padding: 20px 0;
 	list-style: none;
-	font-family: 'Raleway', sans-serif;
 }
 div#footer > ul:after {
 	content: '';
@@ -123,7 +149,6 @@ div#footer > ul a:hover {
 
 #hero {
 	color: #1c1c1c;
-	font-size: 15px;
 	overflow-y: hidden;
 	box-sizing: border-box;
 }
@@ -132,7 +157,6 @@ div.portfolio-item > div {
 	margin: auto;
 	padding: 50px 0;
 	max-width: 1200px;
-	font-family: 'Raleway';
 }
 div.portfolio-item > div.no-padding {
 	padding: 0 100px;
@@ -152,14 +176,12 @@ div.portfolio-item > div > * {
 	vertical-align: middle;
 }
 div.portfolio-item > div img { width: 100%; display: block; }
+div.portfolio-item > div > div a { font-size: 0.88rem; }
 div.portfolio-item > div > div {
-	font-size: 15px;
-	line-height: 1.5em;
 	padding-left: 50px;
 	height: auto !important;
 }
 div.portfolio-item > div > div > a {
-	font-size: 0.75em;
 	margin-top: 20px;
 	display: inline-block;
 }
@@ -170,7 +192,6 @@ div.content {
 	padding: 70px 0;
 	max-width: 1200px;
 	text-align: center;
-	font-family: 'Raleway';
 }
 div.content:after {
 	content: '';
@@ -184,9 +205,8 @@ div.content.smaller { max-width: 800px; }
 div.content p {
 	margin: auto;
 	max-width: 800px;
+	margin-bottom: 30px;
 	box-sizing: border-box;
-  margin-bottom: 30px;
-  line-height: 1.5em;
 }
 div.content p a {
 	opacity: 0.7;
@@ -214,10 +234,9 @@ div.content p:last-child { margin-bottom: 0; }
 div.content p.quotes {
 	opacity: 0.4;
 	padding: 0 60px;
-	font-family: 'Raleway';
 	font-style: italic;
 	font-weight: 100;
-	font-size: 1.2em;
+	font-size: 1.13em;
 }
 div.content p.quotes:before { content: '“'; }
 div.content p.quotes:after { content: '”'; }
@@ -237,16 +256,16 @@ div.content p.half-width {
 }
 div.content p[title]:before {
 	display: block;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	text-align: left;
-	font-weight: bold;
 	content: attr(title);
+	font-family: 'Open Sans', sans-serif;
 }
 div.content p.half-width + br { clear: both; }
 
 div.content img + p.attribution { padding: 0; }
 div.content img { width: 100%; }
-div.content img.small { width: auto; }
+div.content img.no-expand { width: auto; max-width: 100%; }
 div.content img.smaller {
 	margin: auto;
 	max-width: 800px;
@@ -269,7 +288,7 @@ div.content img.overlap {
 div.content img.overlap + img.overlap {
 	z-index: 0;
 	float: right;
-	margin-top: -80px;
+	margin-top: -12%;
 }
 
 #hero div.content { padding-top: 20px; }
@@ -283,6 +302,7 @@ body > div:nth-of-type(even) {
 	background: #fafafa;
 }
 
+#challenges div.content { display: none; }
 #challenges ul {
 	text-align: center;
 	max-width: 1200px;
@@ -292,36 +312,28 @@ body > div:nth-of-type(even) {
 
 #challenges ul li {
 	width: 33%;
-	font-size: 14px;
 	padding: 25px 20px;
 	vertical-align: top;
 	display: inline-block;
 	box-sizing: border-box;
-	font-family: Raleway;
 }
 #challenges ul li.heading { vertical-align: middle; }
 #challenges ul li.heading h1 { padding: 0; }
 
-#challenges ul li p {
-	color: #494949;
-	font-weight: 200;
-	line-height: 1.5em;
-}
-
-
 ul#flows-image {
 	max-width: 1200px;
-	margin: 50px auto 0;
+	margin: 30px auto 0;
 }
 
 ul#flows-image li {
 	width: 20%;
+	margin-top: 20px;
 	display: inline-block;
 	box-sizing: border-box;
 }
 
 ul#flows-image li h3 {
-	margin-top: 30px;
+	margin-top: 1.5em;
 	white-space: nowrap;
 }
 
@@ -341,9 +353,52 @@ table#about {
 	margin: auto;
 	table-layout: fixed;
 }
-table#about tr > td:first-child {
-	width: 60%;
-	padding-right: 3%;
-}
+table#about tr > td { text-align: left; }
+table#about tr > td:first-child { width: 60%; padding-right: 3%; }
 table#about tr > td > img { width: 100% !important; }
 table#about tr > td p.attribution { padding-right: 0; }
+
+@media only screen and (max-width: 1250px) {
+	body > div { padding-left: 25px; padding-right: 25px; }
+}
+@media only screen and (max-width: 1000px) {
+	#hero div.content img { width: 100%; }
+	div.content p.quotes { font-size: 1em; }
+}
+@media only screen and (max-width: 800px) {
+	html { font-size: 13px; }
+	body.hamburger #mobile-menu-list {
+		padding: 30px;
+		display: block;
+		list-style: none;
+		position: absolute;
+		top: 0; left: 100%;
+	}
+	#mobile-menu-list > li {
+		font-size: 1rem;
+		padding-bottom: 20px;
+		text-transform: uppercase;
+	}
+	h1 { line-height: 1.3em; }
+	#header ul > li:not(#logo) { display: none; }
+	#header ul li#mobile-menu { display: list-item; }
+	#hero > div.content p > br { display: none; }
+	div.portfolio-item > div > * { width: auto; display: block; }
+	div.portfolio-item > div > div { padding-left: 0; padding-top: 50px; text-align: center; }
+	div.content p.quotes, div.content p.quotes + p.attribution { padding: 0 10px; }
+	div.content p.half-width { float: none; width: auto; padding-left: 25px; padding-right: 25px; }
+	div.content p a { opacity: 1; text-decoration: underline; }
+	ul#flows-image { margin: 30px -20px 0; }
+	ul#flows-image li { width: 33%; }
+	ul#flows-image li h3 { font-size: 0.8em; margin-left: -10px; margin-right: -10px; }
+	ul#flows-image li:nth-child(4), ul#flows-image li:nth-child(5) { margin: 20px 15px 0; }
+	#challenges div.content { display: block; padding-bottom: 0; }
+	#challenges ul { padding-top: 0; }
+	#challenges ul li { display: block; width: auto; }
+	#challenges ul li.heading { display: none; }
+	table#about { padding: 0; width: 100%; }
+	table#about tr > td { display: block !important; padding: 0; width: 100%; }
+	table#about tr > td:first-child { width: 100%; padding: 0 0 30px; }
+	table#about tr:not(:first-child) { display: none !important; }
+	div#footer > ul a { margin-left: 25px; }
+}

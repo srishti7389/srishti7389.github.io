@@ -155,6 +155,7 @@ var Main = Main || {
       { attrs: { href: "/" }, html: "Work" },
       { attrs: { href: "about.html" }, html: "About" },
       { attrs: { href: "mailto:srishti7389@gmail.com", target: "_blank" }, html: "Contact" },
+      { id: "mobile-menu", attrs: { href: "#", class: "" }, html: "" },
     ];
     var selectedTab = heroDiv.attr('selected-tab');
     $.each(tabs, function(i, props) {
@@ -163,6 +164,14 @@ var Main = Main || {
       if (props.id) li.attr('id', props.id);
       $.each(props.attrs, a.attr.bind(a));
       if (selectedTab && parseInt(selectedTab) === i) a.addClass('selected');
+    });
+    $("li#mobile-menu > a").click(function() {
+      $("body").toggleClass('hamburger');
+      return false;
+    });
+    ul.clone().attr('id', "mobile-menu-list").appendTo("body").find("li").each(function(i, el) {
+      if (el.id) $(el).remove();
+      else $(el).prependTo(el.parentNode);
     });
 
     // Add footer
