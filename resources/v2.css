@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css?family=Playfair+Display|Open+Sans";
+@import "https://fonts.googleapis.com/css?family=Playfair+Display|Roboto:300";
 @import url(font-awesome.min.css);
 
 html { font-size: 14px; overflow-x: hidden; }
@@ -28,7 +28,7 @@ body.hamburger #hero[style] ul li#mobile-menu > a { background-image: url(close-
 	padding: 0;
 	border: 0;
 	outline: 0;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Roboto', sans-serif;
 }
 
 div[href], h1[href], li[href] { cursor: pointer; }
@@ -43,11 +43,10 @@ h1 {
 	line-height: 1em;
 }
 h3 {
-	font-weight: 100;
 	font-size: 1.13rem;
 	padding-bottom: 10px;
 }
-p { line-height: 1.7em; font-weight: 100; }
+p { line-height: 1.7em; }
 
 #header ul {
 	margin: auto;
@@ -235,7 +234,6 @@ div.content p.quotes {
 	opacity: 0.4;
 	padding: 0 60px;
 	font-style: italic;
-	font-weight: 100;
 	font-size: 1.13em;
 }
 div.content p.quotes:before { content: '“'; }
@@ -244,7 +242,6 @@ div.content p.attribution {
 	opacity: 0.4;
 	text-align: right;
 	font-size: 0.9em;
-	font-weight: 100;
 	padding: 0 60px;
 }
 div.content p.half-width {
@@ -259,7 +256,6 @@ div.content p[title]:before {
 	font-size: 1.2em;
 	text-align: left;
 	content: attr(title);
-	font-family: 'Open Sans', sans-serif;
 }
 div.content p.half-width + br { clear: both; }
 
