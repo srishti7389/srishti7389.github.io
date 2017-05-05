@@ -189,7 +189,16 @@ var Main = Main || {
   },
 };
 
-$("head").append('<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0" />');
+window.smartlook||(function() {
+  var o = smartlook = function() { o.api.push(arguments) }; o.api = new Array();
+  var c = $("<script type='text/javascript' src='https://rec.smartlook.com/recorder.js'></script>")[0];
+  c.async = true; c.charset = 'utf-8';
+  $("head").append(c).append('<meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1.0" />');
+})();
+try {
+  smartlook('init', 'e4d0d9f1a3ff9d3bc005c8e066efc0aadf5a2b48');
+} catch(err) { }
+
 $(function() {
   Main.initHeader();
   Main.initImageExpander();
