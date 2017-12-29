@@ -1,0 +1,2 @@
+#!/bin/bash
+s3cmd sync --delete-removed $1 --rexclude '\.git|DS_Store' ./ s3://sakshatgoyal.com
