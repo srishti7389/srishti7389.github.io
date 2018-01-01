@@ -5,70 +5,66 @@ var projects = [{
 	id: "hivado",
 	name: "Hivado",
 	images: 11,
+	year: 2017,
+	height: 1309,
 	cover: "cover.png",
-	description: "A startup that tries to make luxurious perfumes and colognes more accessible to a larger audience.",
-	scope: ["Branding", "Website", "Visual design", "Illustration"],
 }, {
 	id: "cadence",
 	name: "Cadence",
 	images: 5,
+	year: 2017,
+	height: 649,
 	cover: "cover.png",
-	description: "A web based application meant for marketing agencies.",
-	scope: ["Visual design"],
-}, {
-	id: "parametric_design",
-	name: "Parametric Design",
-	images: 11,
-	path_prefix: "arterior",
-	description: "A startup that tries to make luxurious perfumes and colognes more accessible to a larger audience.",
-	scope: ["Branding", "Visual design", "Illustration"],
-}, {
-	id: "housing",
-	name: "Housing",
-	images: 11,
-	path_prefix: "arterior",
-	description: "A startup that tries to make luxurious perfumes and colognes more accessible to a larger audience.",
-	scope: ["Branding", "Visual design", "Illustration"],
-}, {
-	id: "urban_insert",
-	name: "Urban Insert",
-	images: 11,
-	path_prefix: "arterior",
-	description: "A startup that tries to make luxurious perfumes and colognes more accessible to a larger audience.",
-	scope: ["Branding", "Visual design", "Illustration"],
 }, {
 	id: "arterior",
 	name: "Arterior",
 	images: 11,
+	year: 2017,
+	height: 1163,
 	videos: { 3: ["animation", 19, 42.5, 62, 36.1] },
-	description: "A startup that tries to make luxurious perfumes and colognes more accessible to a larger audience.",
-	scope: ["Branding", "Visual design", "Illustration"],
-}, {
-	id: "shades",
-	name: "Shades",
-	images: 11,
-	path_prefix: "arterior",
-	description: "A startup that tries to make luxurious perfumes and colognes more accessible to a larger audience.",
-	scope: ["Branding", "Visual design", "Illustration"],
-}, {
-	id: "sports_complex",
-	name: "Sports Complex",
-	images: 13,
-	description: "A startup that tries to make luxurious perfumes and colognes more accessible to a larger audience.",
-	scope: ["Branding", "Visual design", "Illustration"],
 }, {
 	id: "surge_monks",
-	name: "Surge Monks",
+	name: "Surgemonks",
 	images: 7,
-	description: "A marketing agency that was slowly transitioning from a few individuals working in an informal setup to becoming an established company with a large team and a healthy portfolio of clients. Also, my first project as a visual designer.",
-	scope: ["Logo design", "Web design"],
+	year: 2016,
+	height: 751,
+}, {
+	id: "logos",
+	name: "Logos",
+	images: 11,
+	year: 2016,
+	path_prefix: "arterior",
+}, {
+	id: "esin_school",
+	name: "Esin School",
+	images: 11,
+	year: 2015,
+	path_prefix: "arterior",
+}, {
+	id: "titan",
+	name: "Titan",
+	images: 11,
+	year: 2015,
+	path_prefix: "arterior",
 }, {
 	id: "memorial",
 	name: "Memorial",
 	images: 11,
+	year: 2015,
 	path_prefix: "arterior",
-	description: "A startup that tries to make luxurious perfumes and colognes more accessible to a larger audience.",
-	scope: ["Branding", "Visual design", "Illustration"],
+}, {
+	id: "institution",
+	name: "Institution",
+	images: 13,
+	year: 2013,
+	height: 1187,
+	path_prefix: "sports_complex",
+}, {
+	id: "housing",
+	name: "Housing",
+	images: 11,
+	year: 2012,
+	path_prefix: "arterior",
 }];
 var body = $("body");
 var hideloading = function() {
@@ -104,8 +100,38 @@ var loadImage = function(url) {
 	}).promise();
 };
 
+var expandImage = function() {
+	var img = $("img", this)[0];
+	if (!$("div.project-details.single")[0]) {
+		$("<div class='project-details single'><div class='inner'></div><a class='next'></a><a class='prev'></a><a class='close'></a></div>").hide().appendTo(body).fadeIn(250);
+	}
+	var links = $("div.project-details.single > a").removeClass('disabled').data('linkedElem', this);
+	if (!$(this).prev("div")[0]) links.filter("a.prev").addClass('disabled');
+	if (!$(this).next("div")[0]) links.filter("a.next").addClass('disabled');
+	var container = links.siblings("div.inner").removeClass('full').css('background-image', "url(" + img.src + ")").html('');
+	var video = $("video", this);
+	if (video[0]) {
+		video = video.add(video.next("div.play-btn")).clone();
+		container.append(video);
+	}
+
+	setTimeout(function() {
+		var height = 1.0 * container.width() * img.height / img.width;
+		if (height < 1.1 * container.height()) {
+			container.addClass('full');
+		} else {
+			if (video[0]) {
+				var scale = container.height() / height;
+				video.css('transform', "scale(" + scale + ", 1)");
+				video.filter("div.play-btn").css("background-size", "7.5% " + (7.5/scale) + "%");
+			}
+			container.css('height', height);
+		}
+	}, 100);
+	return false;
+};
 var showProject = function(proj) {
-	var container = $("<div id='project-details'><div class='inner'></div></div>").hide().appendTo(body).fadeIn(250).children("div.inner");
+	var container = $("<div class='project-details'><div class='inner'></div><a class='close'></a></div>").hide().appendTo(body).fadeIn(250).children("div.inner");
 	var path_prefix = "projects/" + (proj.path_prefix || proj.id) + "/";
 	if (!proj.loaded_images) {
 		proj.loaded_images = [];
@@ -116,45 +142,30 @@ var showProject = function(proj) {
 	var appendImage = function(i) {
 		if (i >= proj.loaded_images.length) return;
 		proj.loaded_images[i].then(function(image) {
-			var div = $("<div></div>").append(image).appendTo(container);
+			var div = $("<div></div>").append(image).click(expandImage).appendTo(container);
 			if (proj.videos && proj.videos[i]) {
 				var src = "<source src='" + path_prefix + proj.videos[i][0] + ".mp4' type='video/mp4'>";
 				var video = $("<video loop>" + src + "\nYour browser does not support the video tag.\n</video><div class='play-btn'></div>").appendTo(div).css({
-					position: "absolute",
 					left: '' + proj.videos[i][1] + '%',
 					top: '' + proj.videos[i][2] + '%',
 					width: '' + proj.videos[i][3] + '%',
 					height: '' + proj.videos[i][4] + '%',
 				}).filter("video");
-				var playButton = video.siblings("div.play-btn").hover(function() {
-					playButton.addClass('playing');
-					video[0].play();
-				}, function() {
-					playButton.removeClass('playing');
-					video[0].pause();
-				});
-				video[0].addEventListener('ended', function() {
-					playButton.removeClass('playing');
-				}, false);
 			}
 			appendImage(i+1);
 		});
 	};
+	container.css({ minHeight: Math.round(proj.height * 10.24), backgroundColor: "#fff" });
 	appendImage(0);
 };
 
 var addProjects = function() {
 	var work_list = $("#worklist > ul"), work_info = $("#workinfos > ul");
 	$(projects).each(function(i, proj) {
-		var info_li = $("<li></li>").css('background-image', "url(projects/" + (proj.path_prefix || proj.id) + "/" + (proj.cover || "cover.jpg") + ")");
-		$("<div class='description'></div>").text(proj.description).appendTo(info_li);
-		var scope_div = $("<div class='scope'></div>").appendTo(info_li);
-		$.each(proj.scope, function(i, s) { $("<p></p>").text(s).appendTo(scope_div); });
-		work_info.append(info_li);
-
-		var li = "<li><a href='#' data-project='" + proj.id + "'><span class='prefix'>";
-		li += (i < 9 ? "0" : "") + (i + 1) + "</span><span class='title'>" + proj.name + "</span></a></li>";
 		var timeout = null;
+		var li = "<li><a href='#' data-project='" + proj.id + "'><span class='prefix'>" + proj.year + "</span><span class='title'>" + proj.name + "</span></a></li>";
+		var info_li = $("<li></li>").appendTo(work_info).
+			css('background-image', "url(projects/" + (proj.path_prefix || proj.id) + "/" + (proj.cover || "cover.jpg") + ")");
 		$(li).appendTo(work_list).hover(function() {
 			info_li.addClass('active').siblings(".active").removeClass('active');
 			if (timeout) {
@@ -163,9 +174,7 @@ var addProjects = function() {
 			}
 		}, function() {
 			timeout = setTimeout(function() {
-				if (info_li.hasClass('active')) {
-					info_li.removeClass('active').show().fadeOut();
-				}
+				if (info_li.hasClass('active')) info_li.removeClass('active').show().fadeOut();
 				timeout = null;
 			}, 250)
 		}).children("a[data-project]").click(function(e) {
@@ -177,22 +186,39 @@ var addProjects = function() {
 };
 
 $(function() {
+	body.show();
 	if ((window.location.hash || "").indexOf("loaded") >= 0) {
-		body.addClass("preloaded hideloading");
+		body.addClass("loading-full preloaded hideloading");
+		addProjects();
 	} else {
 		setTimeout(function() { body.addClass("loaded"); }, 500);
 		setTimeout(function() { body.addClass("loading-full"); addProjects(); }, 3000);
 	}
 
-	body.on('click', "#project-details", function() {
-		$("#project-details").fadeOut(250, function() { $(this).remove(); });
-	}).on('click', "#project-details > div.inner", function(e) {
+	body.on('click', ".project-details > *", function(e) {
+		var $this = $(this);
+		if ($this.is("div.inner") && $this.parent().hasClass('single')) {
+			if (!$this.hasClass('full')) $this.toggleClass('expanded');
+		} else if ($this.is('a.close')) {
+			$this.parent().fadeOut(250, function() { $(this).remove(); });
+		} else if ($this.is('a:not(.close)') && !$this.hasClass('disabled')) {
+			expandImage.call(($this.hasClass('next') ? $($this.data('linkedElem')).next("div") : $($this.data('linkedElem')).prev("div"))[0]);
+		}
 		e.stopPropagation();
 		return false;
+	}).on('click', ".project-details", function(e) {
+		if (!$(this).hasClass('single')) $("a.close", this).click();
+	}).on('mouseenter', "div.play-btn", function() {
+		var video = $(this).addClass('playing').prev("video")[0];
+		video && video.play();
+	}).on('mouseleave', "div.play-btn", function() {
+		var video = $(this).removeClass('playing').prev("video")[0];
+		video && video.pause();
 	});
 
 	$(".scroll-down").on("click", hideloading).on('click', function() { return false; });
 	$("#main-nav a.selected").click(function() { return false; });
+	$("#worklist").css('margin-top', window.innerHeight/2 - 130);
 });
 
 $(window).on('wheel', hideloading);
