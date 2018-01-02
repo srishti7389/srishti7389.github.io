@@ -4,67 +4,58 @@
 var projects = [{
 	id: "hivado",
 	name: "Hivado",
-	images: 11,
+	images: 9,
 	year: 2017,
 	height: 1309,
-	cover: "cover.png",
 }, {
 	id: "cadence",
 	name: "Cadence",
-	images: 5,
+	images: 4,
 	year: 2017,
 	height: 649,
-	cover: "cover.png",
 }, {
 	id: "arterior",
 	name: "Arterior",
-	images: 11,
+	images: 8,
 	year: 2017,
 	height: 1163,
-	videos: { 3: ["animation", 19, 42.5, 62, 36.1] },
+	videos: { 2: ["animation", 19, 42.5, 62, 36.1] },
 }, {
 	id: "surge_monks",
 	name: "Surgemonks",
-	images: 7,
+	images: 5,
 	year: 2016,
-	height: 751,
+	height: 754,
 }, {
 	id: "logos",
 	name: "Logos",
-	images: 11,
+	images: 5,
 	year: 2016,
-	path_prefix: "arterior",
+	height: 613,
 }, {
 	id: "esin_school",
 	name: "Esin School",
-	images: 11,
+	images: 5,
 	year: 2015,
-	path_prefix: "arterior",
+	height: 642,
 }, {
 	id: "titan",
 	name: "Titan",
-	images: 11,
+	images: 10,
 	year: 2015,
-	path_prefix: "arterior",
+	height: 946,
 }, {
 	id: "memorial",
 	name: "Memorial",
-	images: 11,
+	images: 7,
 	year: 2015,
-	path_prefix: "arterior",
+	height: 1448,
 }, {
 	id: "institution",
 	name: "Institution",
-	images: 13,
+	images: 10,
 	year: 2013,
 	height: 1187,
-	path_prefix: "sports_complex",
-}, {
-	id: "housing",
-	name: "Housing",
-	images: 11,
-	year: 2012,
-	path_prefix: "arterior",
 }];
 var body = $("body");
 var hideloading = function() {
@@ -140,7 +131,7 @@ var showProject = function(proj) {
 		}
 	}
 	var appendImage = function(i) {
-		if (i >= proj.loaded_images.length) return;
+		if (i >= proj.loaded_images.length) return container.removeAttr('style');
 		proj.loaded_images[i].then(function(image) {
 			var div = $("<div></div>").append(image).click(expandImage).appendTo(container);
 			if (proj.videos && proj.videos[i]) {
@@ -165,7 +156,7 @@ var addProjects = function() {
 		var timeout = null;
 		var li = "<li><a href='#' data-project='" + proj.id + "'><span class='prefix'>" + proj.year + "</span><span class='title'>" + proj.name + "</span></a></li>";
 		var info_li = $("<li></li>").appendTo(work_info).
-			css('background-image', "url(projects/" + (proj.path_prefix || proj.id) + "/" + (proj.cover || "cover.jpg") + ")");
+			css('background-image', "url(projects/" + (proj.path_prefix || proj.id) + "/" + (proj.cover || "cover.png") + ")");
 		$(li).appendTo(work_list).hover(function() {
 			info_li.addClass('active').siblings(".active").removeClass('active');
 			if (timeout) {
