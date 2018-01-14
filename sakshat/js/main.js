@@ -7,12 +7,14 @@ var projects = [{
 	images: 7,
 	year: 2017,
 	height: 1306,
+	scope: "Branding . Web UI Design . Visual Design . Illustration",
 }, {
 	id: "cadence",
 	name: "Cadence",
 	images: 4,
 	year: 2017,
 	height: 649,
+	scope: "Web UI Design",
 }, {
 	id: "arterior",
 	name: "Arterior",
@@ -20,48 +22,56 @@ var projects = [{
 	year: 2017,
 	height: 1150,
 	videos: { 2: ["animation", 19, 42.5, 62, 36.1] },
+	scope: "Logo Design . Art direction . Web UI Design . Photography",
 }, {
 	id: "surgemonks",
 	name: "Surgemonks",
 	images: 5,
 	year: 2016,
 	height: 754,
+	scope: "Logo Design . Web UI Design",
 }, {
 	id: "logofolio",
 	name: "Logofolio",
 	images: 6,
 	year: 2016,
 	height: 519,
+	scope: "Logo Design",
 }, {
 	id: "esin_school",
 	name: "Esin School",
 	images: 5,
 	year: 2015,
 	height: 645,
+	scope: "Parametric Architecture - Design",
 }, {
 	id: "titan",
 	name: "Titan",
 	images: 9,
 	year: 2015,
 	height: 957,
+	scope: "Parametric Architecture - Modeling",
 }, {
 	id: "memorial",
 	name: "Memorial",
 	images: 13,
 	year: 2015,
 	height: 1451,
+	scope: "Project Management . Lighting Design . Architectural Detailing . Technical Drawings",
 }, {
 	id: "institution",
 	name: "Sports Complex",
 	images: 10,
 	year: 2013,
 	height: 1236,
+	scope: "Architectural Design - Institutional",
 }, {
 	id: "housing",
 	name: "Housing",
 	images: 7,
 	year: 2012,
 	height: 1211,
+	scope: "Architectural Design - Housing",
 }];
 var body = $("body");
 var hideloading = function() {
@@ -161,24 +171,28 @@ var addProjects = function() {
 	var work_list = $("#worklist > ul"), work_info = $("#workinfos > ul");
 	$(projects).each(function(i, proj) {
 		var timeout = null;
-		var li = "<li><a href='#' data-project='" + proj.id + "'><span class='prefix'>" + proj.year + "</span><span class='title'>" + proj.name + "</span></a></li>";
+		var li = $("<li><a href='#' data-project='" + proj.id + "'><span class='title'>" + proj.name + "</span><span class='prefix'>" + proj.year + "</span><span class='scope'>" + proj.scope + "</span></a></li>").appendTo(work_list);
 		var info_li = $("<li></li>").appendTo(work_info).
 			css('background-image', "url(projects/" + (proj.path_prefix || proj.id) + "/cover.jpg" + ")");
-		$(li).appendTo(work_list).hover(function() {
+		li.children("a[data-project]").click(function(e) {
+			e.preventDefault();
+			showProject(proj);
+			return false;
+		}).children("span.prefix, span.title").hover(function() {
 			info_li.addClass('active').siblings(".active").removeClass('active');
+			li.addClass('hover').siblings("li.hover").removeClass('hover');
 			if (timeout) {
 				clearTimeout(timeout);
 				timeout = null;
 			}
 		}, function() {
 			timeout = setTimeout(function() {
-				if (info_li.hasClass('active')) info_li.removeClass('active').show().fadeOut();
+				if (info_li.hasClass('active')) {
+					info_li.removeClass('active').show().fadeOut(250);
+					li.removeClass('hover');
+				}
 				timeout = null;
-			}, 250)
-		}).children("a[data-project]").click(function(e) {
-			e.preventDefault();
-			showProject(proj);
-			return false;
+			}, 500)
 		});
 	});
 };
@@ -215,8 +229,6 @@ $(function() {
 	});
 
 	$(".scroll-down").on("click", hideloading).on('click', function() { return false; });
-	$("#main-nav a.selected").click(function() { return false; });
-	$("#worklist").css('margin-top', window.innerHeight/2 - 130);
 });
 
 $(window).on('wheel', hideloading);
