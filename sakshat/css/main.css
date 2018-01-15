@@ -150,7 +150,7 @@ body.loaded #page-loader .name .lastname > span:nth-child(6)  { transition-delay
 }
 #page-loader .load-seq.desc { font-size: 30px; line-height: 30px; }
 #page-loader .load-seq.work-scope { top: auto; bottom: 140px; }
-#page-loader .load-seq.scroll { top: auto; bottom: 55px; }
+#page-loader .load-seq.scroll { top: auto; bottom: 45px; }
 #page-loader .load-seq > p {
   position: relative;
 	opacity: 0; top: 15px;
@@ -173,13 +173,13 @@ body.loaded #page-loader .desc > p { transition-delay: 1.35s; }
 body.loaded #page-loader .work-scope > p { transition-delay: 1.55s; }
 body.loaded #page-loader .scroll > p { transition-delay: 1.75s; text-align: center; }
 
-#page-loader .scroll a { text-decoration: none; font-size: 16px; color: inherit; display: inline-block; }
+#page-loader .scroll a { text-decoration: none; font-size: 14px; color: inherit; display: inline-block; opacity: 0.5; }
 #page-loader .scroll a > span::after {
   content: '\f107';
   display: block;
 	font-family: FontAwesome;
-	font-size: 20px;
-  margin-top: 5px;
+	font-size: 18px;
+  margin-top: -6px;
   text-align: center;
   text-rendering: auto;
   -moz-osx-font-smoothing: grayscale;
@@ -201,12 +201,12 @@ body.loaded #page-loader .scroll > p { transition-delay: 1.75s; text-align: cent
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
 }
-#worklist { float: right; max-width: 840px; margin-top: -10px; }
+#worklist { float: right; max-width: 840px; margin-top: -9px; }
 #worklist ul > li > a {
+  height: 26px;
   display: block;
 	color: #b3b3b3;
-  padding: 10px 0;
-  line-height: 24px;
+  padding: 9px 0;
   text-decoration: none;
   text-transform: lowercase;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -221,7 +221,7 @@ body.loaded #page-loader .scroll > p { transition-delay: 1.75s; text-align: cent
 }
 #worklist ul > li > a::after { content: ""; display: block; clear: both; visibility: hidden; font-size: 0; height: 0; }
 #worklist ul li a > span { float: right; display: block; text-align: left; vertical-align: middle; overflow: hidden; }
-#worklist ul li a > span.title { width: 180px; font-size: 22px; line-height: 24px; padding: 0; }
+#worklist ul li a > span.title { width: 180px; font-size: 22px; line-height: 26px; padding: 0; margin-top: -1px; }
 #worklist ul li a > span.prefix { width: 50px; font-size: 12px; line-height: 14px; padding: 7px 0 3px; }
 #worklist ul li a > span.scope {
   float: none;
@@ -282,15 +282,17 @@ div.project-details > a {
   border-radius: 50%;
   text-decoration: none;
 }
-div.project-details > a.close {
-  top: 20px;
+div.project-details > a.close, div.project-details > a.download {
   right: 20px;
   width: 24px;
   height: 24px;
-  background: url(img/close.svg) no-repeat center;
-  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
-div.project-details > a:not(.close) {
+div.project-details > a.close { top: 20px; background-image: url(img/close.svg); background-size: contain; }
+div.project-details > a.download { top: 60px; background-image: url(img/download.svg); background-size: 70%; }
+div.project-details > a:not(.close):not(.download) {
   top: 50%;
   width: 40px;
   height: 40px;

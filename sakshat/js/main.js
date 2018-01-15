@@ -138,8 +138,9 @@ var expandImage = function() {
 	return false;
 };
 var showProject = function(proj) {
-	var container = $("<div class='project-details'><div class='inner'></div><a class='close'></a></div>").hide().appendTo(body).fadeIn(250).children("div.inner");
+	var container = $("<div class='project-details'><div class='inner'></div><a class='close'></a><a class='download' download></a></div>").hide().appendTo(body).fadeIn(250).children("div.inner");
 	var path_prefix = "projects/" + (proj.path_prefix || proj.id) + "/";
+	container.siblings("a.download").attr('href', path_prefix + "full_image.jpg");
 	if (!proj.loaded_images) {
 		proj.loaded_images = [];
 		for (var i = 1; i <= proj.images; i++) {
@@ -213,6 +214,9 @@ $(function() {
 			if (!$this.hasClass('full')) $this.toggleClass('expanded');
 		} else if ($this.is('a.close')) {
 			$this.parent().fadeOut(250, function() { $(this).remove(); });
+		} else if ($this.is('a.download')) {
+			e.stopPropagation();
+			return true;
 		} else if ($this.is('a:not(.close)') && !$this.hasClass('disabled')) {
 			expandImage.call(($this.hasClass('next') ? $($this.data('linkedElem')).next("div") : $($this.data('linkedElem')).prev("div"))[0]);
 		}
