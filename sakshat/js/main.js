@@ -18,7 +18,7 @@ var projects = [{
 }, {
 	id: "arterior",
 	name: "Arterior",
-	images: 7,
+	images: 6,
 	year: 2017,
 	height: 1150,
 	videos: { 2: ["animation", 19, 42.5, 62, 36.1] },
@@ -47,7 +47,7 @@ var projects = [{
 }, {
 	id: "titan",
 	name: "Titan",
-	images: 9,
+	images: 10,
 	year: 2015,
 	height: 957,
 	scope: "Parametric Architecture - Modeling",
@@ -139,8 +139,8 @@ var expandImage = function() {
 };
 var showProject = function(proj) {
 	var container = $("<div class='project-details'><div class='inner'></div><a class='close'></a><a class='download' download></a></div>").hide().appendTo(body).fadeIn(250).children("div.inner");
-	var path_prefix = "projects/" + (proj.path_prefix || proj.id) + "/";
-	container.siblings("a.download").attr('href', path_prefix + "full_image.jpg");
+	var path_prefix = "projects/" + proj.id + "/";
+	container.siblings("a.download").attr('href', "projects/full_images/SakshatGoyal-" + proj.id + ".jpg");
 	if (!proj.loaded_images) {
 		proj.loaded_images = [];
 		for (var i = 1; i <= proj.images; i++) {
@@ -174,7 +174,7 @@ var addProjects = function() {
 		var timeout = null;
 		var li = $("<li><a href='#' data-project='" + proj.id + "'><span class='title'>" + proj.name + "</span><span class='prefix'>" + proj.year + "</span><span class='scope'>" + proj.scope + "</span></a></li>").appendTo(work_list);
 		var info_li = $("<li></li>").appendTo(work_info).
-			css('background-image', "url(projects/" + (proj.path_prefix || proj.id) + "/cover.jpg" + ")");
+			css('background-image', "url(projects/" + proj.id + "/cover.jpg" + ")");
 		li.children("a[data-project]").click(function(e) {
 			e.preventDefault();
 			showProject(proj);

@@ -462,3 +462,36 @@ body, body::after {
 }
 body::after { background-color: #fff; }
 body { background-color: #1e1e1e; }
+
+@media only screen and (max-width: 1140px) {
+  #page-content {
+    margin: 0;
+    width: auto;
+    height: auto;
+    top: 0; bottom: 0;
+    left: 50px; right: 50px;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+  }
+  #workinfos {
+    float: none;
+    height: 420px;
+    position: absolute;
+    left: 0; top: 100px;
+  }
+  #worklist {
+    float: none;
+    height: 100%;
+    right: 0; top: 0;
+    position: absolute;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    padding: 550px 10px 0 0;
+    max-width: calc(100% - 300px);
+  }
+  #worklist:after { content: ''; height: 100%; display: block; }
+  #worklist ul li a > span.scope { white-space: normal; }
+}
