@@ -78,7 +78,7 @@ body.preloaded > div#page-content, body.loading-full > div#page-content { displa
   color: #fff;
   width: 100%;
   height: 100%;
-  padding: 0 20px;
+  margin: 0 20px;
   position: fixed;
   text-align: left;
   top: 0; left: 50%;
@@ -339,6 +339,7 @@ div.project-details > div.inner video + div.play-btn  { background: url(img/play
 div.project-details > div.inner video + div.play-btn.playing { background: transparent; }
 div.project-details.single > div.inner.expanded > video { transform: none !important; }
 div.project-details.single > div.inner.expanded > div.play-btn { transform: none !important; background-size: 7.5% !important; }
+div.embed_video { height: 315px; padding-top: 35px; text-align: center; }
 
 
 div#about {
@@ -494,4 +495,25 @@ body { background-color: #1e1e1e; }
   }
   #worklist:after { content: ''; height: 100%; display: block; }
   #worklist ul li a > span.scope { white-space: normal; }
+}
+
+@media only screen and (max-width: 700px) {
+  #page-content, #workinfos, #worklist { position: static; }
+  #page-content { text-align: center; margin: 0 50px; }
+  body.preloaded #workinfos { display: none !important; }
+  #worklist { padding: 100px 0; max-width: none; }
+  #worklist ul li a { height: auto; }
+  #worklist ul li span.title, #worklist ul li span.prefix { color: #000 !important; }
+  #worklist ul li a > span.scope {
+    float: none;
+    clear: both;
+    font-size: 1em;
+    display: block;
+    position: static;
+    line-height: 1.3em;
+    text-align: center;
+    visibility: visible;
+    padding: 5px 0 10px;
+  }
+  div.project-details a.close, div.project-details a.download { right: 5px; }
 }

@@ -59,6 +59,14 @@ var projects = [{
 	height: 1451,
 	scope: "Project Management . Lighting Design . Architectural Detailing . Technical Drawings",
 }, {
+	id: "urban_insert",
+	name: "Coalescence",
+	images: 1,
+	year: 2014,
+	no_download: true,
+	scope: "Architecture . Landscape . Master Planning",
+	embed: { 0: "<iframe width='560' height='315' src='https://www.youtube.com/embed/uHOVX3xXgfk?rel=0&amp;showinfo=0&amp;color=white&amp;autoplay=1' frameborder='0' allow='autoplay; encrypted-media' autoplay allowfullscreen></iframe>" },
+}, {
 	id: "institution",
 	name: "Sports Complex",
 	images: 10,
@@ -140,6 +148,7 @@ var expandImage = function() {
 var showProject = function(proj) {
 	var container = $("<div class='project-details'><div class='inner'></div><a class='close'></a><a class='download' download></a></div>").hide().appendTo(body).fadeIn(250).children("div.inner");
 	var path_prefix = "projects/" + proj.id + "/";
+	if (proj.no_download) container.siblings("a.download").remove();
 	container.siblings("a.download").attr('href', "projects/full_images/SakshatGoyal-" + proj.id + ".jpg");
 	if (!proj.loaded_images) {
 		proj.loaded_images = [];
@@ -150,9 +159,15 @@ var showProject = function(proj) {
 	}
 	var appendImage = function(i) {
 		if (i >= proj.loaded_images.length) return container.css({ minHeight: 0 });
-		proj.loaded_images[i].then(function(image) {
-			var div = $("<div></div>").append(image).click(expandImage).appendTo(container);
-			if (proj.videos && proj.videos[i]) {
+		var cb = function(success, image) {
+			var div;
+			if (!success && proj.embed[i]) {
+				div = $("<div class='embed_video'></div>").append(proj.embed[i]);
+			} else {
+				div = $("<div></div>").append(image).click(expandImage);
+			}
+			div.appendTo(container);
+			if (success && proj.videos && proj.videos[i]) {
 				var src = "<source src='" + path_prefix + proj.videos[i][0] + ".mp4' type='video/mp4'>";
 				var video = $("<video loop>" + src + "\nYour browser does not support the video tag.\n</video><div class='play-btn'></div>").appendTo(div).css({
 					left: '' + proj.videos[i][1] + '%',
@@ -162,9 +177,11 @@ var showProject = function(proj) {
 				}).filter("video");
 			}
 			appendImage(i+1);
-		});
+		};
+		proj.loaded_images[i].then(function(image) { cb(true, image); }, function(image) { cb(false, image); });
 	};
-	container.css({ minHeight: Math.round(proj.height * 10.24), backgroundColor: "#fff" });
+	var min_height = proj.height ? Math.round(proj.height * 10.24) : '100%';
+	container.css({ minHeight: min_height, backgroundColor: "#fff" });
 	appendImage(0);
 };
 
